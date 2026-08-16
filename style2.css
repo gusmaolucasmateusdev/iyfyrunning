@@ -1,0 +1,432 @@
+/* Variáveis de estilo para facilitar manutenção */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: black;
+    --text-color: black;
+    --text-muted: white;
+    --accent-color: #ffffff; /* Tom verde/amarelo neon esportivo */
+    --card-bg: black;
+    --border-color: white;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header / Navbar */
+.navbar {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: black;
+}
+
+.logo span {
+    color: black;
+}
+
+.menu a {
+    color: black;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.menu a:hover, .menu a.active {
+    color: black;
+}
+
+.btn-primary {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background-color: black;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('womenrunning.jpg') center/cover;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.hero p {
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Filtros */
+.filters-section {
+    background-color: black;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+}
+
+.filters-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 280px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+    color: black;
+    font-size: 0.95rem;
+}
+
+.filter-options {
+    display: flex;
+    gap: 10px;
+    color: green;
+}
+
+.filter-options select {
+    padding: 12px 15px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 6px;
+    color: gray;
+    cursor: pointer;
+}
+
+/* Grid de Eventos */
+.main-content {
+    padding: 40px 20px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* Card Individual */
+.event-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-color: #444;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Força a área da imagem a ser um quadrado perfeito (1:1) */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+.badge-inscricoes {
+    background-color: var(--accent-color);
+    color: black;
+}
+
+.badge-breve {
+    background-color: black;
+    color: #fff;
+}
+
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.event-date {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.event-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: white;
+}
+
+.event-details {
+    font-size: 0.9rem;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.event-distances {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.event-distances span {
+    background-color: black;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.price {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.price strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.btn-card {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-card:hover {
+    background-color: var(--accent-color);
+    color: black;
+}
+
+.btn-card.disabled {
+    border-color: #444;
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.btn-card.disabled:hover {
+    background-color: transparent;
+    color: var(--text-muted);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid white;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: black;
+}
+
+/* Classe utilitária para esconder os cards de forma limpa no grid */
+.event-card.hidden {
+    display: none !important;
+}
+
+/* Animação suave ao revelar os cards filtrados */
+.fade-in {
+    animation: fadeInSmooth 0.4s ease forwards;
+}
+
+@keyframes fadeInSmooth {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================== */
+
+/* --- TABLETS E TELAS MÉDIAS (Até 768px) --- */
+@media (max-width: 768px) {
+    /* Ajustes do Banner Hero */
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    /* Alinhamento dos Filtros */
+    .filters-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .search-box {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .filter-options {
+        width: 100%;
+    }
+
+    .filter-options select {
+        flex: 1; /* Faz os selects dividirem o espaço igualmente */
+    }
+}
+
+/* --- CELULARES (Até 576px) --- */
+@media (max-width: 576px) {
+    /* Ajustes na Navbar */
+    .header-container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+        gap: 15px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .menu a {
+        margin-right: 0; /* Remove a margem antiga para usar o gap */
+        font-size: 0.85rem;
+    }
+
+    .btn-primary {
+        width: 100%; /* Botão de destaque vira largura total no mobile */
+        text-align: center;
+    }
+
+    /* Redução de títulos para telas pequenas */
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /* Ajuste fino no Grid de Eventos para celulares bem pequenos */
+    .events-grid {
+        grid-template-columns: 1fr; /* Força uma coluna única */
+        gap: 20px;
+    }
+    
+    /* Evita que botões de filtros quebrem no mobile */
+    .filter-options {
+        flex-direction: column;
+    }
+}

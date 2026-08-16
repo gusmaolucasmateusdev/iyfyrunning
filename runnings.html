@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="style2.css">
+    <!-- Ícones rápidos via FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container header-container">
+            <div class="logo">IYFY <span>RUNNING</span></div>
+            <nav class="menu">
+                <a href="index.html">Home</a>
+                <a href="artigos.html">IYFY Education</a>
+            <a href="academy.html">Treino</a>
+            </nav>
+           
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Encontre sua próxima corrida</h1>
+            <p>Os melhores eventos de corrida de rua, run trail e trail de Belém.</p>
+        </div>
+    </section>
+
+    <!-- Filtros e Busca -->
+    <section class="filters-section">
+        <div class="container filters-container">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar evento por nome ou cidade...">
+            </div>
+            <div class="filter-options">
+                <select name="modalidade" id="modalidade">
+                    <option value="">Modalidade (Todas)</option>
+                    <option value="rua">Corrida de Rua</option>
+                    <option value="runtrail">Run Trail</option>
+                    <option value="runtrail">Trail</option>
+                </select>
+                <select name="data" id="data">
+                    <option value="">Mês (Todos)</option>
+                    <option value="10">Agosto</option>
+                    <option value="11">Setembro</option>
+                    <option value="12">Outubro</option>
+                    <option value="12">Novembro</option>
+                    <option value="13">Dezembro</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Eventos -->
+    <main class="container main-content">
+        <h2 class="section-title">Próximos Eventos</h2>
+
+        <div class="events-grid">
+        <div class="event-card" data-modalidade="trail" data-mes="12">
+                <div class="card-image" style="background-image: url('iyfy3.jpeg');">
+                    <span class="badge badge-inscricoes">Inscrições Abertas</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> 27 de Setembro, 2026</span>
+                    <h3 class="event-title">1ª IYFY RUNNING EXPERIENCE</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Campus UFPA - Belém, PA</p>
+                    <div class="event-distances">
+                        <span>3K Caminhada</span>
+                        <span>8K Corrida</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">2º Lote<strong>R$ 120,00</strong></span>
+                        <a href="https://www.sympla.com.br/evento/1-iyfy-running-experience/3507431?share_id=copiarlink&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAadBJM8LAWYRQoYq0NOW2m5oVkU9OwIdKMRk-schTsI-Fc5j2y_9KSXYNYkMbA_aem_9xaZ0j1bB7RlHDeNgKWBAQ&utm_id=97760_v0_s00_e0_tv3&referrer=l.instagram.com&referrer=l.instagram.com" class="btn-card">Inscreva-se</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card" data-modalidade="trail" data-mes="12">
+                <div class="card-image" style="background-image: url('f5.jpeg');">
+                    <span class="badge badge-inscricoes">Inscrições Abertas</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> A definir</span>
+                    <h3 class="event-title">F5 SPEED RELAY</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Belém, PA</p>
+                    <div class="event-distances">
+                        <span>5K Corrida</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Valor<strong>R$ 120,00</strong></span>
+                        <a href="#" class="btn-card">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+
+    
+            <div class="event-card" data-modalidade="rua" data-mes="11">
+                <div class="card-image" style="background-image: url('42k.jpeg');">
+                    <span class="badge badge-breve">Em Breve</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> A definir</span>
+                    <h3 class="event-title">IYFY 42K</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Belém, PA</p>
+                    <div class="event-distances">
+                        <span>42K Corrida</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Pré-venda</span>
+                        <a href="#" class="btn-card disabled">Quero Alerta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer simples -->
+    <footer>
+        <p>&copy; 2026 IYFY Running. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Arquivo JavaScript linkado no final para garantir o carregamento do DOM -->
+    <script src="app.js"></script>
+</body>
+</html>

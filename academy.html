@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IYFY Running Academy</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+        :root {
+            --bg-dark: #050507;
+            --surface-card: #0d0d12;
+            --surface-hover: #14141c;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.2);
+            
+            --text-primary: #ffffff;
+            --text-secondary: white;
+            --text-muted: white;
+            
+            --accent-lime: #d9f99d;
+            --accent-lime-bright: white;
+            --accent-cyan: cyan;
+            --accent-purple: purple;
+            --accent-orange: orange;
+            
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER GLASSMORPHISM */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(5, 5, 7, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: Arial, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-lime-bright);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-lime-bright);
+        }
+
+        .menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .menu a {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            color: var(--text-primary);
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-dark);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 160px 6% 80px;
+            background: radial-gradient(circle at 50% 0%, rgba(204, 255, 0, 0.05) 0%, rgba(5, 5, 7, 0) 70%);
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1px solid white;
+            color: var(--accent-lime-bright);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-family: Arial, sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            max-width: 900px;
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #ffffff 30%, var(--text-secondary));
+            -webkit-backgroundclip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 620px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* SECTION COMMON STYLES */
+        .section {
+            padding: 40px 6% 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+        }
+
+        .section-title-group h2 {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title-group p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 6px;
+        }
+
+        /* PLANILHAS DE TREINO (TRAINING PLANS GRID) */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .plan-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 32px 28px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-highlight);
+            background: var(--surface-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Variations per distance */
+        .plan-card.level-5k:hover::before { background: green; }
+        .plan-card.level-10k:hover::before { background: blue; }
+        .plan-card.level-21k:hover::before { background: red; }
+        .plan-card.level-42k:hover::before { background: black; }
+
+        .plan-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .badge-level {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 100px;
+        }
+
+        .level-5k .badge-level { background: green; color: white; }
+        .level-10k .badge-level { background: blue; color: white; }
+        .level-21k .badge-level { background: red; color: white; }
+        .level-42k .badge-level { background: black; color: white; }
+
+        .status-tag {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .plan-distance {
+            font-family: Arial, sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .plan-desc {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .plan-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover .plan-btn {
+            background: var(--text-primary);
+            color: var(--bg-dark);
+            border-color: var(--text-primary);
+        }
+
+        /* VIDEO CARDS GRID */
+        .video-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .video-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .video-row { grid-template-columns: 1fr; }
+        }
+
+        .video-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-highlight);
+            background: var(--surface-hover);
+        }
+
+        .thumbnail {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.85;
+        }
+
+        .video-card:hover .thumbnail img {
+            transform: scale(1.06);
+            opacity: 1;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(5, 5, 7, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding-left: 3px;
+        }
+
+        .video-card:hover .play-icon {
+            background: var(--accent-lime-bright);
+            color: var(--bg-dark);
+            border-color: var(--accent-lime-bright);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .video-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--accent-lime-bright);
+            margin-bottom: 8px;
+        }
+
+        .video-content h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-lineclamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 60px 6% 40px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--text-primary);
+            color: var(--bg-dark);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 24px;
+        }
+
+        /* RESPONSIVE DESIGN - COM LOGO CENTRALIZADA NO MOBILE */
+        @media (max-width: 768px) {
+            .header {
+                height: auto;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 14px 16px;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .menu {
+                width: 100%;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .menu a {
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 30px 5% 40px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .menu {
+                gap: 10px;
+            }
+
+            .menu a {
+                font-size: 0.78rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <div class=""></div>
+            IYFY ACADEMY
+        </div>
+
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="artigos.html">IYFY Education</a></li>
+                <li><a href="runnings.html">Eventos</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-tag">
+            <i class="fa-solid fa-bolt"></i> Eleve seu nível
+        </div>
+        <h1 class="hero-title">
+            Domine a corrida.<br>
+        </h1>
+        <p class="hero-subtitle">
+            Aprenda técnicas avançadas de corrida, fortalecimento direcionado e acesse planilhas exclusivas desenvolvidas por atletas e treinadores de alto rendimento.
+        </p>
+
+        <!-- PLANILHAS DE TREINO -->
+        <div class="section" id="treinos" style="padding-left:0; padding-right:0;">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <h2>Planilhas de Treino</h2>
+                    <p>Selecione a distância ideal para o seu momento atual</p>
+                </div>
+            </div>
+
+            <div class="plans-grid">
+                <!-- 5K -->
+                <div class="plan-card level-5k">
+                    <div>
+                        <div class="plan-top">
+                            <span class="badge-level">Iniciante</span>
+                            <span class="status-tag">Em breve</span>
+                        </div>
+                        <div class="plan-distance">5K</div>
+                        <p class="plan-desc">Construção de base e resistência aeróbica inicial para os primeiros 5 quilômetros sem interrupções.</p>
+                    </div>
+                    <a href="#" class="plan-btn">
+                        Ver Treino <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- 10K -->
+                <div class="plan-card level-10k">
+                    <div>
+                        <div class="plan-top">
+                            <span class="badge-level">Intermediário</span>
+                            <span class="status-tag">Em breve</span>
+                        </div>
+                        <div class="plan-distance">10K</div>
+                        <p class="plan-desc">Aumento do volume de treinos e introdução ao ritmo de prova para quebrar recordes nos 10 quilômetros.</p>
+                    </div>
+                    <a href="#" class="plan-btn">
+                        Ver Treino <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- 21K -->
+                <div class="plan-card level-21k">
+                    <div>
+                        <div class="plan-top">
+                            <span class="badge-level">Avançado</span>
+                            <span class="status-tag">Em breve</span>
+                        </div>
+                        <div class="plan-distance">21K</div>
+                        <p class="plan-desc">Meia Maratona com foco em eficiência energética, ritmo limiar e nutrição para longa distância.</p>
+                    </div>
+                    <a href="#" class="plan-btn">
+                        Ver Treino <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- 42K -->
+                <div class="plan-card level-42k">
+                    <div>
+                        <div class="plan-top">
+                            <span class="badge-level">Elite</span>
+                            <span class="status-tag">Em breve</span>
+                        </div>
+                        <div class="plan-distance">42K</div>
+                        <p class="plan-desc">Periodização completa para Maratona. Treinos de tiro, rodagens longas e suporte mental.</p>
+                    </div>
+                    <a href="#" class="plan-btn">
+                        Ver Treino <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÕES DE VÍDEOS -->
+    <section class="section" id="continue">
+        <div class="section-header">
+            <div class="section-title-group">
+                <h2>Motivacionais</h2>
+                <p>Histórias inspiradoras e bastidores do atletismo mundial</p>
+            </div>
+        </div>
+        <div class="video-row" id="continueVideos"></div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-title-group">
+                <h2>Técnica de Corrida</h2>
+                <p>Melhore sua mecânica, cadência e postura no asfalto e nas trilhas</p>
+            </div>
+        </div>
+        <div class="video-row" id="tecnicaVideos"></div>
+    </section>
+
+    
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="logo">
+                <div class=""></div>
+                IYFY RUNNING
+            </div>
+
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/iyfyrunning/" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.strava.com/clubs/2240885" class="social-link" aria-label="Strava"><i class="fa-brands fa-strava"></i></a>
+                <a href="https://www.youtube.com/@iyfyrunning" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYFY Running. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE RENDERIZAÇÃO DOS VÍDEOS -->
+    <script>
+        const continuar = [
+            {
+                id: "GuJdHu3BGkI",
+                titulo: "Por Dentro do Treinamento",
+                info: "Documentário ",
+                duracao: "9 min"
+            },
+            {
+                id: "03i0ilzB0qA",
+                titulo: "PRONTO PARA MORRER com o MEDALHISTA OLÍMPICO PAUL CHELIMO",
+                info: "Treinamento",
+                duracao: "22 min"
+            },
+            {
+                id: "mAFg56_Rgtw",
+                titulo: "A estreia na La Mission 25k",
+                info: "Rotina de Treino",
+                duracao: "28 min"
+            }
+        ];
+
+        const tecnica = [
+            {
+                id: "sScNDZu2MWk",
+                titulo: "5 Dicas Fáceis para Correr Mais Rápido Sem Dor",
+                info: "Técnica de Corrida",
+                duracao: "7 min"
+            },
+            {
+                id: "unyxUsLLO4k",
+                titulo: "Descubra o que acontece com seu corpo quando você corre em subidas",
+                info: "Técnica de Corrida",
+                duracao: "10 min"
+            },
+            {
+                id: "euOpy884bgQ",
+                titulo: "King of Moab: Desafios em Terrenos Técnicos",
+                info: "Preparação",
+                duracao: "53 min"
+            }
+        ];
+
+        
+        function renderizarVideos(lista, containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+
+            lista.forEach(video => {
+                container.innerHTML += `
+                    <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank" class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.titulo}">
+                            <div class="play-icon">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <span class="duration-badge">${video.duracao}</span>
+                        </div>
+                        <div class="video-content">
+                            <span class="video-tag">${video.info}</span>
+                            <h3>${video.titulo}</h3>
+                        </div>
+                    </a>
+                `;
+            });
+        }
+
+        renderizarVideos(continuar, "continueVideos");
+        renderizarVideos(tecnica, "tecnicaVideos");
+        renderizarVideos(fortalecimento, "fortalecimentoVideos");
+    </script>
+</body>
+</html>
