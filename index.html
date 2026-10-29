@@ -145,7 +145,7 @@
                     </div>
                     <div class="card-footer">
                         <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
-                        <button class="btn-card btn-inscrever" data-evento="NOW OR NEVER RUN" data-distancias="3K Caminhada, 5K Corrida, 10K Corrida">Inscreva-se</button>
+                        <button class="btn-card btn-inscrever" data-evento="NOW OR NEVER RUN" data-distancias="3K Caminhada, 5K Corrida, 10K Corrida" data-preco="120,00">Inscreva-se</button>
                     </div>
                 </div>
             </div>
@@ -163,8 +163,8 @@
                         <span>42K</span>
                     </div>
                     <div class="card-footer">
-                        <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
-                        <button class="btn-card btn-inscrever" data-evento="MARATONA DE BELÉM BY IYFY RUNNING" data-distancias="21K, 42K">Inscreva-se</button>
+                        <span class="price">Kit Básico<strong>R$ 100,00</strong></span>
+                        <button class="btn-card btn-inscrever" data-evento="MARATONA DE BELÉM BY IYFY RUNNING" data-distancias="21K, 42K" data-preco="100,00">Inscreva-se</button>
                     </div>
                 </div>
             </div>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="card-footer">
                         <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
-                        <button class="btn-card btn-inscrever" data-evento="2ª IYFY RUNNING EXPERIENCE" data-distancias="3K, 5K, 10K">Inscreva-se</button>
+                        <button class="btn-card btn-inscrever" data-evento="2ª IYFY RUNNING EXPERIENCE" data-distancias="3K, 5K, 10K" data-preco="120,00">Inscreva-se</button>
                     </div>
                 </div>
             </div>
@@ -204,7 +204,7 @@
                     </div>
                     <div class="card-footer">
                         <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
-                        <button class="btn-card btn-inscrever" data-evento="NO EXCUSES RUN" data-distancias="3K, 5K, 10K">Inscreva-se</button>
+                        <button class="btn-card btn-inscrever" data-evento="NO EXCUSES RUN" data-distancias="3K, 5K, 10K" data-preco="120,00">Inscreva-se</button>
                     </div>
                 </div>
             </div>
@@ -288,12 +288,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Tipo de Inscrição</label>
-                    <select id="tipoInscricao" required>
-                        <option value="avulsa">Somente nesta corrida (R$ 120,00)</option>
-                        <option value="combo_normal">Combo 4 Corridas (R$ 480,00)</option>
-                        <option value="combo_desconto">Combo 4 Corridas com 50% de Desconto (R$ 240,00 - Válido para quem participar da 1ª IYFY Running Experience.)</option>
-                    </select>
+                <label>Tipo de Inscrição</label>
+                <select id="tipoInscricao" required>
+                <option value="avulsa" id="opcaoAvulsa">Somente nesta corrida</option>
+                <option value="combo_normal">Combo 4 Corridas (R$ 460,00)</option>
+                <option value="combo_desconto">Combo 4 Corridas com 50% de Desconto (R$ 230,00 - Válido para quem participar da 1ª IYFY Running Experience e 20 vagas para o público geral.)</option>
+                </select>
                 </div>
 
                 <button type="submit" class="btn-enviar-zap">
@@ -322,9 +322,16 @@
             botao.addEventListener('click', () => {
                 const nomeEvento = botao.getAttribute('data-evento');
                 const distancias = botao.getAttribute('data-distancias').split(',');
+                const precoEvento = botao.getAttribute('data-preco') || '120,00';
 
                 inputEventoNome.value = nomeEvento;
                 
+                // Atualiza o texto do valor da inscrição avulsa de acordo com o evento selecionado
+                const opcaoAvulsa = document.getElementById('opcaoAvulsa');
+                if (opcaoAvulsa) {
+                    opcaoAvulsa.textContent = `Somente nesta corrida (R$ ${precoEvento})`;
+                }
+
                 // Preencher select de distâncias
                 selectDistancias.innerHTML = '<option value="">Selecione a distância...</option>';
                 distancias.forEach(dist => {
