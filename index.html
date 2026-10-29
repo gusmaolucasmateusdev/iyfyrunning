@@ -1,410 +1,392 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>IYFY Running</title>
-
-    <link rel="stylesheet" href="home.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-
+    <title>Calendário da IYFY Running 2027</title>
+    <link rel="stylesheet" href="style2.css">
+    <!-- Ícones rápidos via FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos rápidos para o Modal de Inscrição */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn-enviar-zap {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-enviar-zap:hover {
+            background: #1ebd59;
+        }
+    </style>
 </head>
-
-
 <body>
 
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <header class="header">
-
-        <a href="index.html" class="logo">
-            IYFY RUNNING
-        </a>
-
-        <nav class="nav">
-
-            <a href="artigos.html">
-                IYFY Education
-            </a>
-
-            <a href="runnings.html">
-                Eventos
-            </a>
-
-            <a href="academy.html">
-                Treino
-            </a>
-
-            <a href="sobre.html">
-                Sobre nós
-            </a>
-
-        </nav>
-
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container header-container">
+            <div class="logo">IYFY <span>RUNNING</span></div>
+            <nav class="menu">
+                <a href="">Voltar</a>
+            </nav>
+        </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Encontre sua próxima corrida</h1>
+            <p>As melhores corridas de rua, run trail e trail de Belém.</p>
+        </div>
+    </section>
 
+    <!-- Filtros e Busca -->
+    <section class="filters-section">
+        <div class="container filters-container">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar evento por nome ou cidade...">
+            </div>
+            <div class="filter-options">
+                <select name="modalidade" id="modalidade">
+                    <option value="">Modalidade (Todas)</option>
+                    <option value="rua">Corrida de Rua</option>
+                    <option value="runtrail">Run Trail</option>
+                    <option value="trail">Trail</option>
+                </select>
+                <select name="data" id="data">
+                    <option value="">Mês (Todos)</option>
+                    <option value="10">Janeiro</option>
+                    <option value="11">Fevereiro</option>
+                    <option value="12">Março</option>
+                    <option value="12">Abril</option>
+                    <option value="13">Maio</option>
+                    <option value="14">Junho</option>
+                    <option value="15">Julho</option>
+                    <option value="16">Agosto</option>
+                    <option value="17">Setembro</option>
+                    <option value="18">Outubro</option>
+                    <option value="19">Novembro</option>
+                    <option value="20">Dezembro</option>
+                </select>
+            </div>
+        </div>
+    </section>
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- Grid de Eventos -->
+    <main class="container main-content">
+        <h2 class="section-title">Próximas corridas</h2>
 
-    <main>
-
-        <section class="hero">
-
-            <img src="womenrunning.jpg" alt="Corredora durante uma corrida">
-
-            <div class="hero-overlay"></div>
-
-            <div class="hero-content">
-
-                <span class="hero-category">
-                    IYFY RUNNING
-                </span>
-
-                <h1>
-                    CONTINUE SUA JORNADA.
-                </h1>
-
-                <p>
-                    Uma comunidade para quem escolheu se movimentar,
-                    evoluir e viver a corrida do seu jeito.
-                </p>
-
-                <a href="#ecosystem" class="hero-button">
-                    CONHEÇA A IYFY
-                </a>
-
+        <div class="events-grid">
+            <div class="event-card" data-modalidade="trail" data-mes="12">
+                <div class="card-image" style="background-image: url('noworneverrun.jpeg');">
+                    <span class="badge badge-inscricoes">Inscrições Abertas</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> 2 de Janeiro, 2027</span>
+                    <h3 class="event-title">NOW OR NEVER RUN</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Orla de Icoaraci - Belém, PA</p>
+                    <div class="event-distances">
+                        <span>3K Caminhada</span>
+                        <span>5K Corrida</span>
+                        <span>10K Corrida</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
+                        <button class="btn-card btn-inscrever" data-evento="NOW OR NEVER RUN" data-distancias="3K Caminhada, 5K Corrida, 10K Corrida">Inscreva-se</button>
+                    </div>
+                </div>
             </div>
 
-        </section>
-
-
-
-        <!-- =========================
-             INTRODUÇÃO
-        ========================== -->
-
-        <section class="intro">
-
-            <span class="section-label">
-                IT'S YOU FOR YOU
-            </span>
-
-            <h2>
-                Mais do que correr.<br>
-                É sobre você.
-            </h2>
-
-            <p>
-                A IYFY Running nasceu para conectar pessoas através da corrida.
-                Aqui você encontra conhecimento, treinos, eventos e experiências
-                para tornar sua jornada mais leve, consistente e significativa.
-            </p>
-
-        </section>
-
-
-
-        <!-- =========================
-             ECOSSISTEMA
-        ========================== -->
-
-        <section class="ecosystem" id="ecosystem">
-
-            <div class="section-heading">
-
-                <span class="section-label">
-                    O ECOSSISTEMA IYFY
-                </span>
-
-                <h2>
-                    Tudo para a sua jornada.
-                </h2>
-
+            <div class="event-card" data-modalidade="trail" data-mes="12">
+                <div class="card-image" style="background-image: url('maratona-belem.jpeg');">
+                    <span class="badge badge-inscricoes">Inscrições Abertas</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> 24 de Abril, 2027</span>
+                    <h3 class="event-title">MARATONA DE BELÉM BY IYFY RUNNING</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Orla de Icoaraci - Belém, PA</p>
+                    <div class="event-distances">
+                        <span>21K</span>
+                        <span>42K</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
+                        <button class="btn-card btn-inscrever" data-evento="MARATONA DE BELÉM BY IYFY RUNNING" data-distancias="21K, 42K">Inscreva-se</button>
+                    </div>
+                </div>
             </div>
 
-
-            <div class="ecosystem-grid">
-
-
-                <!-- EDUCATION -->
-
-                <article class="ecosystem-card">
-
-                    <div class="card-image">
-
-                        <img src="healthmental.jpg"
-                             alt="Conteúdo sobre corrida e saúde">
-
+            <div class="event-card" data-modalidade="trail" data-mes="12">
+                <div class="card-image" style="background-image: url('segund-iyfy.jpeg');">
+                    <span class="badge badge-inscricoes">Inscrições Abertas</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> 3 de Julho, 2027</span>
+                    <h3 class="event-title">2ª IYFY RUNNING EXPERIENCE</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Rua da Marinha - Belém, PA</p>
+                    <div class="event-distances">
+                        <span>3K</span>
+                        <span>5K</span>
+                        <span>10K</span>
                     </div>
-
-                    <div class="card-content">
-
-                        <span>
-                            01
-                        </span>
-
-                        <h3>
-                            IYFY Education
-                        </h3>
-
-                        <p>
-                            Artigos, ciência, saúde, nutrição e conhecimento
-                            para ajudar você a entender melhor a corrida.
-                        </p>
-
-                        <a href="artigos.html">
-                            Ver artigos →
-                        </a>
-
+                    <div class="card-footer">
+                        <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
+                        <button class="btn-card btn-inscrever" data-evento="2ª IYFY RUNNING EXPERIENCE" data-distancias="3K, 5K, 10K">Inscreva-se</button>
                     </div>
-
-                </article>
-
-
-
-                <!-- EVENTOS -->
-
-                <article class="ecosystem-card">
-
-                    <div class="card-image">
-
-                        <img src="iyfy3.jpeg"
-                             alt="Corredores durante um evento">
-
-                    </div>
-
-                    <div class="card-content">
-
-                        <span>
-                            02
-                        </span>
-
-                        <h3>
-                            Eventos
-                        </h3>
-
-                        <p>
-                            Corridas, desafios e experiências criadas para
-                            colocar você em movimento.
-                        </p>
-
-                        <a href="runnings.html">
-                            Ver eventos →
-                        </a>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- TREINO -->
-
-                <article class="ecosystem-card">
-
-                    <div class="card-image">
-
-                        <img src="1.jpeg"
-                             alt="Treino de corrida">
-
-                    </div>
-
-                    <div class="card-content">
-
-                        <span>
-                            03
-                        </span>
-
-                        <h3>
-                            Treino
-                        </h3>
-
-                        <p>
-                            Planilhas e conteúdos para ajudar você a treinar
-                            com mais organização e consistência.
-                        </p>
-
-                        <a href="academy.html">
-                            Conhecer os treinos →
-                        </a>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- COMUNIDADE -->
-
-                <article class="ecosystem-card">
-
-                    <div class="card-image">
-
-                        <img src="womenrunning.jpg"
-                             alt="Comunidade de corredores">
-
-                    </div>
-
-                    <div class="card-content">
-
-                        <span>
-                            04
-                        </span>
-
-                        <h3>
-                            Comunidade
-                        </h3>
-
-                        <p>
-                            Faça parte de uma comunidade que acredita que
-                            cada pessoa tem sua própria jornada.
-                        </p>
-
-                        <a href="https://www.instagram.com/iyfyrunning/">
-                            Fazer parte →
-                        </a>
-
-                    </div>
-
-                </article>
-
-
+                </div>
             </div>
 
-        </section>
-
-
-
-        <!-- =========================
-             COMUNIDADE
-        ========================== -->
-
-        <section class="community">
-
-            <div class="community-image">
-
-                <img src="runningtwomen.webp"
-                     alt="Corredores juntos">
-
+            <div class="event-card" data-modalidade="trail" data-mes="12">
+                <div class="card-image" style="background-image: url('no-excuses.jpeg');">
+                    <span class="badge badge-inscricoes">Inscrições Abertas</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> 4 de Setembro, 2027</span>
+                    <h3 class="event-title">NO EXCUSES RUN</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Orla de Icoaraci - Belém, PA</p>
+                    <div class="event-distances">
+                        <span>3K</span>
+                        <span>5K</span>
+                        <span>10K</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Vagas Limitadas<strong>R$ 120,00</strong></span>
+                        <button class="btn-card btn-inscrever" data-evento="NO EXCUSES RUN" data-distancias="3K, 5K, 10K">Inscreva-se</button>
+                    </div>
+                </div>
             </div>
 
-
-            <div class="community-content">
-
-                <span class="section-label">
-                    IYFY RUNNING
-                </span>
-
-                <h2>
-                    Correr é individual.<br>
-                    Mas você não precisa<br>
-                    correr sozinho.
-                </h2>
-
-                <p>
-                    Compartilhamos experiências, histórias e desafios
-                    para que cada quilômetro tenha um significado.
-                </p>
-
-                <a href="https://www.instagram.com/iyfyrunning/"
-                   class="outline-button">
-                    SIGA A IYFY
-                </a>
-
+            <div class="event-card" data-modalidade="rua" data-mes="11">
+                <div class="card-image" style="background-image: url('42k.jpeg');">
+                    <span class="badge badge-breve">Em Breve</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date"><i class="fa-regular fa-calendar"></i> Dezembro, 2027</span>
+                    <h3 class="event-title">UTRA 100K</h3>
+                    <p class="event-details"><i class="fa-solid fa-location-dot"></i> Belém, PA à Castanhal, PA</p>
+                    <div class="event-distances">
+                        <span>100K</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">Apenas 30 vagas</span>
+                        <a href="#" class="btn-card disabled">Quero Alerta</a>
+                    </div>
+                </div>
             </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             REDES SOCIAIS
-        ========================== -->
-
-        <section class="social">
-
-            <span class="section-label">
-                ENCONTRE A IYFY
-            </span>
-
-            <h2>
-                Continue a jornada.
-            </h2>
-
-            <p>
-                Acompanhe nossos conteúdos, treinos, eventos e desafios.
-            </p>
-
-
-            <div class="social-links">
-
-    <a href="https://www.instagram.com/iyfyrunning/" target="_blank" aria-label="Instagram">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-
-    <a href="https://www.strava.com/clubs/2240885" aria-label="Strava">
-        <i class="fa-brands fa-strava"></i>
-    </a>
-
-    <a href="https://www.youtube.com/@iyfyrunning" aria-label="YouTube">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
-
-</div>
-
-        </section>
-
+        </div>
     </main>
 
+    <!-- Modal de Inscrição / Formulário -->
+    <div class="modal-overlay" id="modalInscricao">
+        <div class="modal-content">
+            <span class="modal-close" id="fecharModal">&times;</span>
+            <h2 style="margin-bottom: 20px; color: #111;">Formulário de Inscrição</h2>
+            <form id="formInscricao">
+                <input type="hidden" id="eventoNome">
 
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="nome" required placeholder="Digite seu nome completo">
+                </div>
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="email" required placeholder="seu@email.com">
+                </div>
 
+                <div class="form-group">
+                    <label>WhatsApp</label>
+                    <input type="text" id="whatsapp" required placeholder="(91) 99999-9999">
+                </div>
+
+                <div class="form-group">
+                    <label>RG</label>
+                    <input type="text" id="rg" required placeholder="Número do RG">
+                </div>
+
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" id="cpf" required placeholder="000.000.000-00">
+                </div>
+
+                <div class="form-group">
+                    <label>Qual percurso você irá participar?</label>
+                    <select id="modalidadeDistancia" required>
+                        <option value="">Selecione a distância...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Qual o tamanho da camisa?</label>
+                    <select id="tamanhoCamisa" required>
+                        <option value="">Selecione o tamanho...</option>
+                        <option value="PP">PP</option>
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+                        <option value="XGG">XGG</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Possui alguma restrição de saúde?</label>
+                    <textarea id="restricaoSaude" rows="2" placeholder="Informe se possui alergias, problemas cardíacos, etc. (ou digite 'Não')"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Inscrição</label>
+                    <select id="tipoInscricao" required>
+                        <option value="avulsa">Somente nesta corrida (R$ 120,00)</option>
+                        <option value="combo_normal">Combo 4 Corridas (R$ 480,00)</option>
+                        <option value="combo_desconto">Combo 4 Corridas com 50% de Desconto (R$ 240,00 - Válido para quem participar da 1ª IYFY Running Experience.)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-enviar-zap">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Finalizar Inscrição
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer simples -->
     <footer>
-
-        <div class="footer-logo">
-            IYFY RUNNING
-        </div>
-
-        <div class="footer-links">
-
-            <a href="termos.html">
-                Termos de uso
-            </a>
-
-            <a href="privacidade.html">
-                Política de Privacidade
-            </a>
-
-            <a href="sobre.html">
-                Sobre nós
-            </a>
-
-        </div>
-
-        <div class="copyright">
-            © 2026 IYFY Running. Todos os direitos reservados.
-        </div>
-
+        <p>&copy; 2026 IYFY Running. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- Script para manipular o Modal e o envio para o WhatsApp -->
+    <script>
+        const modal = document.getElementById('modalInscricao');
+        const fecharModal = document.getElementById('fecharModal');
+        const botoesInscrever = document.querySelectorAll('.btn-inscrever');
+        const inputEventoNome = document.getElementById('eventoNome');
+        const selectDistancias = document.getElementById('modalidadeDistancia');
+        const formInscricao = document.getElementById('formInscricao');
 
+        // Abrir modal ao clicar em "Inscreva-se"
+        botoesInscrever.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const nomeEvento = botao.getAttribute('data-evento');
+                const distancias = botao.getAttribute('data-distancias').split(',');
+
+                inputEventoNome.value = nomeEvento;
+                
+                // Preencher select de distâncias
+                selectDistancias.innerHTML = '<option value="">Selecione a distância...</option>';
+                distancias.forEach(dist => {
+                    const option = document.createElement('option');
+                    option.value = dist.trim();
+                    option.textContent = dist.trim();
+                    selectDistancias.appendChild(option);
+                });
+
+                modal.style.display = 'flex';
+            });
+        });
+
+        // Fechar modal
+        fecharModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Enviar para o WhatsApp
+        formInscricao.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const evento = inputEventoNome.value;
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const rg = document.getElementById('rg').value;
+            const cpf = document.getElementById('cpf').value;
+            const modalidade = selectDistancias.value;
+            const camisa = document.getElementById('tamanhoCamisa').value;
+            const restricao = document.getElementById('restricaoSaude').value || 'Nenhuma';
+            
+            const tipoInscricaoSelect = document.getElementById('tipoInscricao');
+            const tipoInscricaoTexto = tipoInscricaoSelect.options[tipoInscricaoSelect.selectedIndex].text;
+
+            // Montar a mensagem formatada para o WhatsApp
+            const mensagem = `*NOVA INSCRIÇÃO - IYFY RUNNING*%0A%0A` +
+                             `🏃 *Evento:* ${evento}%0A` +
+                             `👤 *Nome:* ${nome}%0A` +
+                             `📧 *E-mail:* ${email}%0A` +
+                             `📱 *WhatsApp:* ${whatsapp}%0A` +
+                             `🪪 *RG:* ${rg} | *CPF:* ${cpf}%0A` +
+                             `🏁 *Distância:* ${modalidade}%0A` +
+                             `👕 *Camisa:* ${camisa}%0A` +
+                             `⚠️ *Restrição de Saúde:* ${restricao}%0A` +
+                             `🎟️ *Plano:* ${tipoInscricaoTexto}%0A%0A` +
+                             `Olá! Preenchi meus dados no site e gostaria de finalizar o pagamento via PIX.`;
+
+            // Número do WhatsApp fornecido
+            const numeroWhatsApp = '5591989058986';
+
+            // Redirecionar para o WhatsApp
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagem}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+    <script src="app.js"></script>
 </body>
-
 </html>
