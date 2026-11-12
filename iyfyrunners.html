@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IYFY Runners</title>
+
+<!-- FONTES -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #fff; color: #111; font-family: "Montserrat", sans-serif; font-weight: 400; }
+body.cart-open { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, input { font-family: inherit; }
+button { cursor: pointer; }
+img { width: 100%; display: block; object-fit: cover; }
+
+/* ===== HEADER ===== */
+header { width: 100%; height: 82px; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; background: #fff; border-bottom: 1px solid #e9e9e9; position: relative; z-index: 1000; }
+.logo { font-family: "Cormorant Garamond", serif; font-size: 34px; font-weight: 500; letter-spacing: 5px; }
+nav { display: flex; align-items: center; gap: 38px; }
+nav a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; position: relative; }
+nav a::after { content: ""; position: absolute; left: 0; bottom: -7px; width: 0; height: 1px; background: #111; transition: .3s ease; }
+nav a:hover::after { width: 100%; }
+.header-icons { display: flex; gap: 22px; align-items: center; }
+.header-icons button { border: none; background: transparent; display: flex; align-items: center; justify-content: center; color: #111; position: relative; }
+.search-button { font-size: 23px; font-weight: 300; }
+.cart-button svg { width: 22px; height: 22px; stroke-width: 1.3; }
+.cart-count { position: absolute; top: -9px; right: -10px; min-width: 17px; height: 17px; padding: 0 4px; background: #111; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 8px; font-weight: 500; }
+.cart-count.show { display: flex; }
+
+/* ===== HERO ===== */
+.hero { height: calc(100vh - 82px); min-height: 600px; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+.hero-image { position: absolute; inset: 0; background-image: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.08) 65%), url("iyfy3.jpeg"); background-position: center; background-size: cover; transform: scale(1.01); }
+.hero-content { position: relative; z-index: 2; color: #fff; padding: 0 7% 75px; max-width: 700px; }
+.hero-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(70px, 9vw, 145px); line-height: .82; font-weight: 300; letter-spacing: -3px; margin-bottom: 30px; }
+.hero p { font-size: 12px; line-height: 1.8; letter-spacing: 1px; max-width: 400px; margin-bottom: 30px; }
+.hero-button { display: inline-flex; border: 1px solid #fff; padding: 16px 30px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; transition: .3s ease; }
+.hero-button:hover { background: #fff; color: #111; }
+
+/* ===== INTRO ===== */
+.intro { padding: 130px 8%; text-align: center; }
+.intro span { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; }
+.intro h2 { font-family: "Cormorant Garamond", serif; font-size: clamp(45px, 6vw, 82px); font-weight: 300; line-height: 1; max-width: 850px; margin: 25px auto; }
+.intro p { max-width: 540px; margin: auto; font-size: 12px; line-height: 2; color: #555; }
+
+/* ===== COLEÇÃO ===== */
+.collection { padding: 0 5% 130px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 35px; }
+.section-header h3 { font-family: "Cormorant Garamond", serif; font-size: 40px; font-weight: 400; }
+.section-header a { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 5px; }
+.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.product { position: relative; }
+.product-image { position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: #f3f3f3; }
+.new { position: absolute; top: 14px; left: 14px; background: #fff; padding: 8px 10px; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; z-index: 5; }
+.product-info { padding-top: 17px; }
+.product-name { font-family: "Cormorant Garamond", serif; font-size: 24px; font-weight: 500; margin-bottom: 5px; }
+.product-category { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #777; }
+.product-price { font-size: 11px; margin-top: 10px; }
+
+/* ===== CARROSSEL ===== */
+.carousel { position: absolute; inset: 0; overflow: hidden; touch-action: pan-y; user-select: none; }
+.carousel-track { display: flex; height: 100%; transition: transform .55s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+.carousel-track.dragging { transition: none; }
+.carousel-slide { flex: 0 0 100%; height: 100%; background: #f3f3f3; }
+.carousel-slide img { height: 100%; -webkit-user-drag: none; pointer-events: none; }
+.carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(255,255,255,.92); color: #111; display: flex; align-items: center; justify-content: center; z-index: 4; opacity: 0; transition: opacity .3s ease, background .3s ease, color .3s ease; }
+.carousel-arrow svg { width: 14px; height: 14px; }
+.carousel-arrow:hover { background: #111; color: #fff; }
+.carousel-arrow.prev { left: 12px; }
+.carousel-arrow.next { right: 12px; }
+.product-image:hover .carousel-arrow { opacity: 1; }
+.carousel-arrow:disabled { display: none; }
+.carousel-counter { position: absolute; top: 14px; right: 14px; background: rgba(17,17,17,.75); color: #fff; padding: 6px 9px; font-size: 8px; letter-spacing: 1.5px; z-index: 4; }
+.carousel-dots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 7px; z-index: 4; }
+.carousel-dot { width: 7px; height: 7px; padding: 0; border: 1px solid #fff; border-radius: 50%; background: transparent; transition: .3s ease; }
+.carousel-dot.active { background: #fff; transform: scale(1.2); }
+.carousel-thumbs { display: flex; gap: 6px; margin-top: 8px; }
+.carousel-thumb { width: 46px; height: 58px; padding: 0; border: 1px solid transparent; background: #f3f3f3; overflow: hidden; opacity: .55; transition: .3s ease; }
+.carousel-thumb img { height: 100%; }
+.carousel-thumb.active { opacity: 1; border-color: #111; }
+.carousel-thumb:hover { opacity: 1; }
+
+/* ===== AÇÕES DO PRODUTO ===== */
+.product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 17px; }
+.product-actions button { border: 1px solid #111; background: #fff; min-height: 42px; padding: 10px 8px; font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; transition: .3s ease; }
+.add-to-cart { background: #111 !important; color: #fff; }
+.add-to-cart:hover { background: #333 !important; border-color: #333 !important; }
+.buy-whatsapp:hover { background: #111; color: #fff; }
+
+/* ===== CATEGORIAS ===== */
+.categories { padding: 0 5% 140px; }
+.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.category { height: 560px; position: relative; overflow: hidden; display: flex; align-items: flex-end; cursor: pointer; }
+.category::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.65), transparent 60%); z-index: 1; }
+.category img { position: absolute; inset: 0; height: 100%; transition: transform .7s ease; }
+.category:hover img { transform: scale(1.04); }
+.category-content { position: relative; z-index: 2; color: #fff; padding: 35px; }
+.category-content span { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; }
+.category-content h3 { font-family: "Cormorant Garamond", serif; font-size: 50px; font-weight: 300; margin-top: 8px; }
+
+/* ===== BOTÃO-LINK (rodapé: Privacidade / Termos) ===== */
+.link-button { border: none; background: none; padding: 0; font-size: inherit; color: #111; text-decoration: underline; }
+
+/* ===== FOOTER ===== */
+footer { background: #111; color: #fff; padding: 80px 5% 35px; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; padding-bottom: 70px; }
+.footer-brand h2 { font-family: "Cormorant Garamond", serif; font-size: 50px; font-weight: 400; letter-spacing: 5px; margin-bottom: 15px; }
+.footer-brand p { max-width: 300px; font-size: 10px; line-height: 2; color: #999; }
+.footer-column h4 { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
+.footer-column a { display: block; font-size: 10px; color: #999; margin-bottom: 13px; transition: .2s; }
+.footer-column a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid #333; padding-top: 25px; display: flex; justify-content: space-between; color: #777; font-size: 9px; letter-spacing: 1px; }
+.footer-bottom .link-button { color: #777; letter-spacing: 1px; transition: .2s; }
+.footer-bottom .link-button:hover { color: #fff; }
+
+/* ===== MODAL LEGAL ===== */
+.legal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 2500; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease; }
+.legal-overlay.active { opacity: 1; visibility: visible; }
+.legal-modal { background: #fff; width: min(640px, 100%); max-height: 85vh; display: flex; flex-direction: column; }
+.legal-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; border-bottom: 1px solid #e7e7e7; }
+.legal-header h2 { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 400; }
+.legal-close { width: 36px; height: 36px; border: none; background: transparent; font-size: 25px; font-weight: 300; }
+.legal-body { overflow-y: auto; padding: 24px 28px 30px; font-size: 12px; line-height: 1.9; color: #444; }
+.legal-body h3 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #111; margin: 22px 0 8px; }
+.legal-body h3:first-child { margin-top: 0; }
+.legal-body ul { padding-left: 18px; }
+
+/* ===== SACOLA ===== */
+.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 2000; opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s ease; }
+.cart-overlay.active { opacity: 1; visibility: visible; }
+.cart-drawer { position: fixed; top: 0; right: 0; width: min(430px, 100%); height: 100vh; background: #fff; z-index: 2100; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .4s cubic-bezier(.2,.7,.2,1); box-shadow: -15px 0 50px rgba(0,0,0,.08); }
+.cart-drawer.active { transform: translateX(0); }
+.cart-header { height: 82px; padding: 0 28px; border-bottom: 1px solid #e7e7e7; display: flex; align-items: center; justify-content: space-between; }
+.cart-title { font-family: "Cormorant Garamond", serif; font-size: 31px; font-weight: 400; }
+.close-cart { width: 36px; height: 36px; border: none; background: transparent; font-size: 25px; font-weight: 300; }
+.cart-body { flex: 1; overflow-y: auto; padding: 25px 28px; }
+.cart-empty { min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: "Cormorant Garamond", serif; font-size: 25px; color: #777; }
+.cart-empty.hidden { display: none; }
+.cart-item { display: grid; grid-template-columns: 82px 1fr; gap: 15px; padding: 0 0 22px; margin-bottom: 22px; border-bottom: 1px solid #eee; }
+.cart-item-image { width: 82px; height: 105px; overflow: hidden; background: #f4f4f4; }
+.cart-item-image img { width: 100%; height: 100%; }
+.cart-item-info { position: relative; padding-right: 20px; }
+.cart-item-category { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: #888; margin-bottom: 5px; }
+.cart-item-name { font-family: "Cormorant Garamond", serif; font-size: 21px; line-height: 1.1; margin-bottom: 8px; }
+.cart-item-price { font-size: 10px; margin-bottom: 14px; }
+.remove-item { position: absolute; top: 0; right: 0; border: none; background: none; font-size: 9px; color: #888; text-decoration: underline; }
+.quantity-control { display: flex; align-items: center; width: fit-content; border: 1px solid #ddd; }
+.quantity-control button { width: 30px; height: 28px; border: none; background: #fff; font-size: 13px; }
+.quantity-control span { width: 28px; text-align: center; font-size: 10px; }
+.cart-footer { border-top: 1px solid #ddd; padding: 24px 28px 28px; background: #fff; }
+.cart-total { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.cart-total span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.cart-total strong { font-family: "Cormorant Garamond", serif; font-size: 28px; font-weight: 500; }
+.checkout-button { width: 100%; border: 1px solid #111; background: #111; color: #fff; padding: 18px 20px; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; transition: .3s ease; }
+.checkout-button:hover { background: #333; border-color: #333; }
+.checkout-button:disabled { opacity: .35; cursor: not-allowed; }
+.cart-note { text-align: center; font-size: 8px; line-height: 1.6; color: #888; margin-top: 12px; }
+
+/* ===== TOAST ===== */
+.toast { position: fixed; left: 50%; bottom: 30px; transform: translate(-50%, 20px); background: #111; color: #fff; padding: 14px 22px; font-size: 9px; letter-spacing: 1px; z-index: 3000; opacity: 0; visibility: hidden; transition: opacity .3s ease, transform .3s ease, visibility .3s ease; }
+.toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 1100px) {
+    .products { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+    nav { display: none; }
+    .category-grid { grid-template-columns: 1fr; }
+    .category { height: 500px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .carousel-arrow { opacity: 1; } /* setas sempre visíveis em telas sem hover */
+}
+
+@media (max-width: 600px) {
+    header { height: 70px; padding: 0 20px; }
+    .logo { font-size: 28px; }
+    .header-icons { gap: 18px; }
+    .hero { min-height: 650px; height: calc(100vh - 70px); }
+    .hero-content { padding: 0 25px 45px; }
+    .hero h1 { font-size: 70px; }
+    .intro { padding: 90px 25px; }
+    .collection, .categories { padding-left: 20px; padding-right: 20px; }
+    .products { grid-template-columns: 1fr; gap: 40px; }
+    .product-name { font-size: 22px; }
+    .product-actions { grid-template-columns: 1fr; gap: 6px; }
+    .product-actions button { min-height: 40px; }
+    .carousel-arrow { width: 34px; height: 34px; }
+    .category-grid { gap: 10px; }
+    .category { height: 450px; }
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 10px; }
+    .legal-header { padding: 18px 20px; }
+    .legal-body { padding: 20px 20px 26px; }
+    .cart-header { height: 70px; padding: 0 20px; }
+    .cart-body { padding: 22px 20px; }
+    .cart-footer { padding: 20px; }
+    .toast { width: calc(100% - 40px); text-align: center; bottom: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <a href="#" class="logo">IYFY RUNNING</a>
+
+    <nav>
+        <a href="#novidades">Destaque</a>
+        <a href="#colecao">T-shirts</a>
+        <a href="#feminino">Em breve</a>
+    </nav>
+
+    <div class="header-icons">
+        <button class="search-button" aria-label="Buscar" type="button">⌕</button>
+
+        <button class="cart-button" id="cartButton" aria-label="Abrir sacola" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 8h12l1 13H5L6 8Z"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+            </svg>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </div>
+</header>
+
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="novidades">
+    <div class="hero-image"></div>
+
+    <div class="hero-content">
+        <div class="hero-label">Camiseta</div>
+
+        <h1>1ª IYFY Running<br>Experience</h1>
+
+        <p>
+            Camisa em poliamida, 
+            tecido leve, respirável e de secagem rápida, 
+            sinta a leveza, perfeita para seus treinos.
+        </p>
+
+        <a href="#colecao" class="hero-button">Comprar</a>
+    </div>
+</section>
+
+
+<!-- ===== INTRO ===== -->
+<section class="intro" id="sobre">
+    <span>IYFY RUNNING</span>
+
+    <h2>Menos comparação.<br>Mais evolução.</h2>
+
+    <p>
+        Criamos peças para acompanhar diferentes momentos,
+        combinando simplicidade, qualidade e uma estética
+        atemporal.
+    </p>
+</section>
+
+
+<!-- ===== COLEÇÃO ===== -->
+<section class="collection" id="colecao">
+
+    <div class="section-header">
+        <h3>Seleção da temporada</h3>
+        <a href="#colecao">Ver tudo</a>
+    </div>
+
+    <div class="products">
+
+        <!--
+            COMO ADICIONAR MAIS FOTOS NO CARROSSEL:
+
+            Dentro de cada produto, dentro de <div class="carousel-track">,
+            copie e cole mais um bloco:
+
+            <div class="carousel-slide">
+                <img src="NOME-DA-FOTO.jpeg" alt="Descrição">
+            </div>
+
+            As bolinhas, o contador e as miniaturas são gerados
+            automaticamente. A PRIMEIRA imagem é a que vai para a sacola.
+        -->
+
+
+        <!-- PRODUTO 1 -->
+        <article class="product" data-name="1ª IYFY Running Experience T-Shirt" data-category="Camisetas" data-price="49.90">
+
+            <div class="product-image">
+                <span class="new">Destaque</span>
+
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="ire1.jpeg" alt="1ª IYFY Running Experience T-Shirt - frente"></div>
+                        <div class="carousel-slide"><img src="ire2.jpeg" alt="1ª IYFY Running Experience T-Shirt - costas"></div>
+                        <div class="carousel-slide"><img src="ire3.jpeg" alt="1ª IYFY Running Experience T-Shirt - detalhe do tecido"></div>
+                        <div class="carousel-slide"><img src="iyfy3.jpeg" alt="1ª IYFY Running Experience T-Shirt - estampa"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-name">1ª IYFY Running Experience T-Shirt</div>
+                <div class="product-category">Camisetas</div>
+                <div class="product-price">R$ 49,90</div>
+
+                <div class="product-actions">
+                    <button type="button" class="add-to-cart">Adicionar à sacola</button>
+                    <button type="button" class="buy-whatsapp">Comprar pelo WhatsApp</button>
+                </div>
+            </div>
+
+        </article>
+
+
+        <!-- PRODUTO 2 -->
+        <article class="product" data-name="IYFY T-Shirt" data-category="Camisetas" data-price="99.90">
+
+            <div class="product-image">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="yourjourney.jpeg" alt="IYFY T-Shirt - frente"></div>
+                        <div class="carousel-slide"><img src="yy2.png" alt="IYFY T-Shirt - costas"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-name">IYFY T-Shirt</div>
+                <div class="product-category">Camisetas</div>
+                <div class="product-price">R$ 99,90</div>
+
+                <div class="product-actions">
+                    <button type="button" class="add-to-cart">Adicionar à sacola</button>
+                    <button type="button" class="buy-whatsapp">Comprar pelo WhatsApp</button>
+                </div>
+            </div>
+
+        </article>
+
+
+        <!-- PRODUTO 3 -->
+        <article class="product" data-name="IYFY Keep Moving T-Shirt" data-category="Camisetas" data-price="99.90">
+
+            <div class="product-image">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="kmt1black.jpeg" alt="IYFY Keep Moving T-Shirt - frente"></div>
+                        <div class="carousel-slide"><img src="kmt2black.jpeg" alt="IYFY Keep Moving T-Shirt - costas"></div>
+                        <div class="carousel-slide"><img src="kmt1white.jpeg" alt="IYFY Keep Moving T-Shirt - versão branca, frente"></div>
+                        <div class="carousel-slide"><img src="kmt2white.jpeg" alt="IYFY Keep Moving T-Shirt - versão branca, costas"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-name">IYFY Keep Moving T-Shirt</div>
+                <div class="product-category">Camisetas</div>
+                <div class="product-price">R$ 99,90</div>
+
+                <div class="product-actions">
+                    <button type="button" class="add-to-cart">Adicionar à sacola</button>
+                    <button type="button" class="buy-whatsapp">Comprar pelo WhatsApp</button>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+</section>
+
+
+<!-- ===== CATEGORIAS ===== -->
+<section class="categories">
+
+    <div class="section-header">
+        <h3>Em breve</h3>
+    </div>
+
+    <div class="category-grid">
+
+        <a href="#colecao" class="category" id="feminino">
+            <img src="iyfy3.jpeg" alt="Coleção Keep Going">
+            <div class="category-content">
+                <span>Coleção em breve</span>
+                <h3>Keep Going</h3>
+            </div>
+        </a>
+
+        <a href="#colecao" class="category" id="masculino">
+            <img src="run.jpeg" alt="Coleção IYFY 10K, 21K, 42K, 100K">
+            <div class="category-content">
+                <span>Coleção em breve</span>
+                <h3>IYFY 10K, 21K, 42K, 100K</h3>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <h2>IYFY RUNNING</h2>
+            <p>Your Journey. Your Evolution.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>A loja</h4>
+            <a href="#novidades">Novidades</a>
+            <a href="#feminino">Coleções</a>
+            <a href="#colecao">T-Shirts</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Fale conosco</h4>
+            <a href="#" id="contactLink" target="_blank" rel="noopener">Contato</a>
+            <a href="#" data-legal="termos">Entregas e trocas</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Redes Sociais</h4>
+            <a href="https://www.instagram.com/iyfyrunning/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 IYFY RUNNING</span>
+        <span>Belém  Brasil</span>
+        <span>
+            <button type="button" class="link-button" data-legal="privacidade">Privacidade</button>
+            
+            <button type="button" class="link-button" data-legal="termos">Termos</button>
+        </span>
+    </div>
+
+</footer>
+
+
+<!-- ===== MODAL LEGAL (PRIVACIDADE / TERMOS) ===== -->
+<div class="legal-overlay" id="legalOverlay">
+    <div class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+
+        <div class="legal-header">
+            <h2 id="legalTitle"></h2>
+            <button class="legal-close" id="legalClose" aria-label="Fechar" type="button">×</button>
+        </div>
+
+        <div class="legal-body" id="legalBody"></div>
+
+    </div>
+</div>
+
+
+<!-- ===== SACOLA ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-drawer" id="cartDrawer" aria-label="Sacola de compras">
+
+    <div class="cart-header">
+        <h2 class="cart-title">Sua sacola</h2>
+        <button class="close-cart" id="closeCart" aria-label="Fechar sacola" type="button">×</button>
+    </div>
+
+    <div class="cart-body" id="cartItems">
+        <div class="cart-empty" id="cartEmpty">Sua sacola está vazia.</div>
+    </div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">R$ 0,00</strong>
+        </div>
+
+        <button class="checkout-button" id="checkoutButton" type="button" disabled>
+            Finalizar pelo WhatsApp
+        </button>
+
+        <p class="cart-note">
+            Você será direcionado ao WhatsApp para confirmar
+            disponibilidade, tamanho e pagamento.
+        </p>
+
+    </div>
+
+</aside>
+
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURAÇÃO DO WHATSAPP
+
+   IMPORTANTE: troque o número abaixo pelo WhatsApp real da loja.
+
+   Formato: 55 + DDD + número
+   Exemplo para um número de Belém: 5591XXXXXXXXX
+   Não coloque: + espaços parênteses hífens
+===================================================== */
+
+const WHATSAPP_NUMBER = "5591989058986";
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const cartButton = document.getElementById("cartButton");
+const cartDrawer = document.getElementById("cartDrawer");
+const cartOverlay = document.getElementById("cartOverlay");
+const closeCart = document.getElementById("closeCart");
+
+const cartItems = document.getElementById("cartItems");
+const cartEmpty = document.getElementById("cartEmpty");
+
+const cartCount = document.getElementById("cartCount");
+const cartTotal = document.getElementById("cartTotal");
+
+const checkoutButton = document.getElementById("checkoutButton");
+const toast = document.getElementById("toast");
+
+
+/* =====================================================
+   CARRINHO
+===================================================== */
+
+let cart = [];
+
+try {
+    cart = JSON.parse(localStorage.getItem("iyfyCart")) || [];
+} catch (error) {
+    cart = [];
+}
+
+
+function formatPrice(value) {
+    return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+
+function saveCart() {
+    try {
+        localStorage.setItem("iyfyCart", JSON.stringify(cart));
+    } catch (error) {}
+}
+
+
+function openCart() {
+    cartDrawer.classList.add("active");
+    cartOverlay.classList.add("active");
+    document.body.classList.add("cart-open");
+}
+
+
+function closeCartDrawer() {
+    cartDrawer.classList.remove("active");
+    cartOverlay.classList.remove("active");
+    document.body.classList.remove("cart-open");
+}
+
+
+cartButton.addEventListener("click", openCart);
+closeCart.addEventListener("click", closeCartDrawer);
+cartOverlay.addEventListener("click", closeCartDrawer);
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimeout;
+
+function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimeout);
+
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+
+/* =====================================================
+   ADICIONAR PRODUTO
+===================================================== */
+
+function addToCart(product) {
+
+    const existingProduct = cart.find(item => item.name === product.name);
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    saveCart();
+    renderCart();
+
+    showToast(`${product.name} foi adicionada à sacola.`);
+
+    openCart();
+}
+
+
+/* =====================================================
+   RENDERIZAR CARRINHO
+===================================================== */
+
+function renderCart() {
+
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+    const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+    cartCount.textContent = totalItems;
+    cartCount.classList.toggle("show", totalItems > 0);
+
+    cartTotal.textContent = formatPrice(totalPrice);
+
+    checkoutButton.disabled = cart.length === 0;
+
+    cartItems.querySelectorAll(".cart-item").forEach(item => item.remove());
+
+    cartEmpty.classList.toggle("hidden", cart.length > 0);
+
+    cart.forEach((item, index) => {
+
+        const itemElement = document.createElement("div");
+        itemElement.className = "cart-item";
+
+        itemElement.innerHTML = `
+
+            <div class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}">
+            </div>
+
+            <div class="cart-item-info">
+
+                <div class="cart-item-category">${item.category}</div>
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">${formatPrice(item.price)}</div>
+
+                <div class="quantity-control">
+                    <button type="button" data-action="decrease" data-index="${index}" aria-label="Diminuir quantidade">−</button>
+                    <span>${item.quantity}</span>
+                    <button type="button" data-action="increase" data-index="${index}" aria-label="Aumentar quantidade">+</button>
+                </div>
+
+                <button type="button" class="remove-item" data-action="remove" data-index="${index}">Remover</button>
+
+            </div>
+
+        `;
+
+        cartItems.appendChild(itemElement);
+
+    });
+}
+
+
+/* =====================================================
+   CONTROLES DO CARRINHO
+===================================================== */
+
+cartItems.addEventListener("click", function (event) {
+
+    const button = event.target.closest("button");
+
+    if (!button) {
+        return;
+    }
+
+    const action = button.dataset.action;
+    const index = Number(button.dataset.index);
+
+    if (action === "increase") {
+        cart[index].quantity++;
+    }
+
+    if (action === "decrease") {
+        cart[index].quantity--;
+
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+    }
+
+    if (action === "remove") {
+        cart.splice(index, 1);
+    }
+
+    saveCart();
+    renderCart();
+
+});
+
+
+/* =====================================================
+   CARROSSEL DE IMAGENS DOS PRODUTOS
+===================================================== */
+
+const ARROW_PREV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>`;
+
+const ARROW_NEXT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>`;
+
+
+function initCarousel(productElement) {
+
+    const carousel = productElement.querySelector(".carousel");
+    const track = carousel.querySelector(".carousel-track");
+    const slides = Array.from(track.querySelectorAll(".carousel-slide"));
+    const total = slides.length;
+
+    let current = 0;
+
+    /* Só 1 imagem: sem controles */
+    if (total <= 1) {
+        return;
+    }
+
+
+    /* SETAS */
+
+    const prevButton = document.createElement("button");
+    prevButton.type = "button";
+    prevButton.className = "carousel-arrow prev";
+    prevButton.setAttribute("aria-label", "Imagem anterior");
+    prevButton.innerHTML = ARROW_PREV;
+
+    const nextButton = document.createElement("button");
+    nextButton.type = "button";
+    nextButton.className = "carousel-arrow next";
+    nextButton.setAttribute("aria-label", "Próxima imagem");
+    nextButton.innerHTML = ARROW_NEXT;
+
+    carousel.appendChild(prevButton);
+    carousel.appendChild(nextButton);
+
+
+    /* CONTADOR (1 / 4) */
+
+    const counter = document.createElement("div");
+    counter.className = "carousel-counter";
+    carousel.appendChild(counter);
+
+
+    /* BOLINHAS */
+
+    const dotsWrapper = document.createElement("div");
+    dotsWrapper.className = "carousel-dots";
+
+    const dots = slides.map((slide, index) => {
+
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel-dot";
+        dot.setAttribute("aria-label", `Ir para a imagem ${index + 1}`);
+        dot.addEventListener("click", () => goTo(index));
+
+        dotsWrapper.appendChild(dot);
+
+        return dot;
+
+    });
+
+    carousel.appendChild(dotsWrapper);
+
+
+    /* MINIATURAS (abaixo da imagem) */
+
+    const thumbsWrapper = document.createElement("div");
+    thumbsWrapper.className = "carousel-thumbs";
+
+    const thumbs = slides.map((slide, index) => {
+
+        const img = slide.querySelector("img");
+
+        const thumb = document.createElement("button");
+        thumb.type = "button";
+        thumb.className = "carousel-thumb";
+        thumb.setAttribute("aria-label", `Ver imagem ${index + 1}`);
+        thumb.innerHTML = `<img src="${img.getAttribute("src")}" alt="">`;
+        thumb.addEventListener("click", () => goTo(index));
+
+        thumbsWrapper.appendChild(thumb);
+
+        return thumb;
+
+    });
+
+    productElement
+        .querySelector(".product-info")
+        .insertBefore(thumbsWrapper, productElement.querySelector(".product-name"));
+
+
+    /* IR PARA UMA IMAGEM */
+
+    function goTo(index) {
+
+        current = Math.max(0, Math.min(index, total - 1));
+
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        counter.textContent = `${current + 1} / ${total}`;
+
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
+        thumbs.forEach((thumb, i) => thumb.classList.toggle("active", i === current));
+
+        prevButton.disabled = current === 0;
+        nextButton.disabled = current === total - 1;
+
+    }
+
+    prevButton.addEventListener("click", () => goTo(current - 1));
+    nextButton.addEventListener("click", () => goTo(current + 1));
+
+
+    /* ARRASTAR / DESLIZAR (mouse e toque) */
+
+    let startX = 0;
+    let deltaX = 0;
+    let dragging = false;
+
+    function onStart(x) {
+        dragging = true;
+        startX = x;
+        deltaX = 0;
+        track.classList.add("dragging");
+    }
+
+    function onMove(x) {
+
+        if (!dragging) {
+            return;
+        }
+
+        deltaX = x - startX;
+
+        const percent = (deltaX / carousel.offsetWidth) * 100;
+
+        track.style.transform = `translateX(calc(-${current * 100}% + ${percent}%))`;
+
+    }
+
+    function onEnd() {
+
+        if (!dragging) {
+            return;
+        }
+
+        dragging = false;
+
+        track.classList.remove("dragging");
+
+        const threshold = carousel.offsetWidth * 0.15;
+
+        if (deltaX < -threshold) {
+            goTo(current + 1);
+        } else if (deltaX > threshold) {
+            goTo(current - 1);
+        } else {
+            goTo(current);
+        }
+
+    }
+
+    carousel.addEventListener("touchstart", e => onStart(e.touches[0].clientX), { passive: true });
+    carousel.addEventListener("touchmove", e => onMove(e.touches[0].clientX), { passive: true });
+    carousel.addEventListener("touchend", onEnd);
+
+    carousel.addEventListener("mousedown", e => onStart(e.clientX));
+    window.addEventListener("mousemove", e => onMove(e.clientX));
+    window.addEventListener("mouseup", onEnd);
+
+
+    /* Setas do teclado quando o carrossel tem foco */
+
+    carousel.tabIndex = 0;
+
+    carousel.addEventListener("keydown", e => {
+
+        if (e.key === "ArrowLeft") {
+            goTo(current - 1);
+        }
+
+        if (e.key === "ArrowRight") {
+            goTo(current + 1);
+        }
+
+    });
+
+
+    goTo(0);
+
+}
+
+
+/* =====================================================
+   BOTÕES DOS PRODUTOS
+===================================================== */
+
+const products = document.querySelectorAll(".product");
+
+products.forEach(product => {
+
+    initCarousel(product);
+
+    const addButton = product.querySelector(".add-to-cart");
+    const whatsappButton = product.querySelector(".buy-whatsapp");
+
+    /* a primeira imagem do carrossel vai para a sacola */
+    const firstImage = product.querySelector(".carousel-slide img").getAttribute("src");
+
+    const productData = {
+        name: product.dataset.name,
+        category: product.dataset.category,
+        price: Number(product.dataset.price),
+        image: firstImage
+    };
+
+
+    /* ADICIONAR À SACOLA */
+
+    addButton.addEventListener("click", function () {
+        addToCart(productData);
+    });
+
+
+    /* COMPRA DIRETA PELO WHATSAPP */
+
+    whatsappButton.addEventListener("click", function () {
+
+        const message = `Olá! Tenho interesse na peça "${productData.name}", da categoria ${productData.category}, no valor de ${formatPrice(productData.price)}. Gostaria de saber a disponibilidade.`;
+
+        const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappURL, "_blank");
+
+    });
+
+});
+
+
+/* =====================================================
+   FINALIZAR PEDIDO PELO WHATSAPP
+===================================================== */
+
+checkoutButton.addEventListener("click", function () {
+
+    if (cart.length === 0) {
+        return;
+    }
+
+    const orderLines = cart.map(item =>
+        `• ${item.name} — ${item.quantity}x — ${formatPrice(item.price * item.quantity)}`
+    );
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    const message = `Olá! Gostaria de fazer um pedido na IYFY RUNNING.
+
+${orderLines.join("\n")}
+
+Total: ${formatPrice(total)}
+
+Gostaria de confirmar a disponibilidade das peças, tamanhos disponíveis e formas de pagamento.`;
+
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+
+});
+
+
+/* =====================================================
+   LINK DE CONTATO (WHATSAPP)
+===================================================== */
+
+document.getElementById("contactLink").href =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de falar com a IYFY RUNNING.")}`;
+
+
+/* =====================================================
+   MODAL LEGAL (PRIVACIDADE / TERMOS)
+===================================================== */
+
+const legalOverlay = document.getElementById("legalOverlay");
+const legalTitle = document.getElementById("legalTitle");
+const legalBody = document.getElementById("legalBody");
+const legalClose = document.getElementById("legalClose");
+
+
+const LEGAL_CONTENT = {
+
+    privacidade: {
+
+        title: "Política de Privacidade",
+
+        html: `
+
+            <h3>Quem somos</h3>
+            <p>A IYFY RUNNING é uma marca que conecta pessoas ao universo da corrida por meio de tecnologia, produtos, conhecimento, comunidade e experiências.</p>
+
+            <h3>Quais dados coletamos</h3>
+            <ul>
+                <li>Os dados que você nos envia por WhatsApp ao fazer um pedido (como nome, tamanho e endereço de entrega).</li>
+                <li>Itens da sacola, que ficam salvos apenas no seu próprio navegador.</li>
+            </ul>
+
+            <h3>Para que usamos</h3>
+            <ul>
+                <li>Atender pedidos, confirmar disponibilidade, pagamento e entrega.</li>
+            </ul>
+
+            <h3>Com quem compartilhamos</h3>
+            <p>Não vendemos seus dados. Eles são usados apenas para atender o seu pedido.</p>
+
+            <h3>Seus direitos (LGPD)</h3>
+            <p>Você pode, a qualquer momento, solicitar acesso, correção ou exclusão dos seus dados falando conosco pelo WhatsApp ou Instagram.</p>
+
+            <h3>Contato</h3>
+            <p>Para qualquer assunto sobre privacidade, fale conosco pelo link "Contato" no rodapé do site.</p>
+
+        `
+
+    },
+
+    termos: {
+
+        title: "Termos, entregas e trocas",
+
+        html: `
+
+            <h3>Pedidos</h3>
+            <p>Os pedidos são confirmados pelo WhatsApp. Preço, disponibilidade e tamanhos são validados com a nossa equipe antes do pagamento.</p>
+
+            <h3>Produtos e imagens</h3>
+            <p>As fotos são ilustrativas e pequenas variações de cor podem ocorrer de acordo com a tela do seu dispositivo.</p>
+
+            <h3>Pagamento</h3>
+            <p>As formas de pagamento disponíveis são informadas durante o atendimento pelo WhatsApp.</p>
+
+            <h3>Entregas</h3>
+            <p>Prazo e valor de entrega são informados no atendimento, de acordo com o seu endereço.</p>
+
+            <h3>Trocas e devoluções</h3>
+            <p>Combinamos trocas e devoluções pelo WhatsApp, respeitando o Código de Defesa do Consumidor, inclusive o direito de arrependimento em compras feitas à distância.</p>
+
+        `
+
+    }
+
+};
+
+
+function openLegal(type) {
+
+    const content = LEGAL_CONTENT[type];
+
+    if (!content) {
+        return;
+    }
+
+    legalTitle.textContent = content.title;
+    legalBody.innerHTML = content.html;
+    legalBody.scrollTop = 0;
+
+    legalOverlay.classList.add("active");
+    document.body.classList.add("cart-open");
+
+}
+
+
+function closeLegal() {
+
+    legalOverlay.classList.remove("active");
+
+    if (!cartDrawer.classList.contains("active")) {
+        document.body.classList.remove("cart-open");
+    }
+
+}
+
+
+document.addEventListener("click", function (event) {
+
+    const trigger = event.target.closest("[data-legal]");
+
+    if (!trigger) {
+        return;
+    }
+
+    event.preventDefault();
+
+    openLegal(trigger.dataset.legal);
+
+});
+
+legalClose.addEventListener("click", closeLegal);
+
+legalOverlay.addEventListener("click", function (event) {
+
+    if (event.target === legalOverlay) {
+        closeLegal();
+    }
+
+});
+
+
+/* =====================================================
+   TECLA ESC
+===================================================== */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+        closeLegal();
+        closeCartDrawer();
+    }
+
+});
+
+
+/* =====================================================
+   ANIMAÇÃO DOS PRODUTOS
+===================================================== */
+
+const productObserver = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+
+        });
+
+    },
+    { threshold: 0.15 }
+);
+
+
+products.forEach(product => {
+
+    product.style.opacity = "0";
+    product.style.transform = "translateY(25px)";
+    product.style.transition = "opacity .7s ease, transform .7s ease";
+
+    productObserver.observe(product);
+
+});
+
+
+/* =====================================================
+   INICIALIZAR CARRINHO
+===================================================== */
+
+renderCart();
+
+</script>
+
+</body>
+</html>
