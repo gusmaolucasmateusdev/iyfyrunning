@@ -1,0 +1,908 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="description" content="IYFY CLUB — Faça parte de uma comunidade que acredita na evolução diária. It's You For You." />
+  <title>IYFY CLUB — Mais que uma corrida!</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="IYFY Club início">
+        <span class="brand-mark">IYFY</span>
+        <span class="brand-sub">CLUB</span>
+      </a>
+
+      <div class="sidebar-label">MENU PRINCIPAL</div>
+
+      <nav class="main-nav" aria-label="Menu principal">
+        <button class="nav-item active" data-page="home" type="button" aria-current="page">
+          <span class="nav-icon" aria-hidden="true"></span>Visão geral
+        </button>
+
+        <button class="nav-item" data-page="challenges" type="button">
+          <span class="nav-icon"></span>Desafios
+        </button>
+
+        <button class="nav-item" data-page="training" type="button">
+          <span class="nav-icon"></span>Treinamento
+        </button>
+
+        <button class="nav-item" data-page="card" type="button">
+          <span class="nav-icon"></span>Minha carteira
+        </button>
+
+        <button class="nav-item" data-page="profile" type="button">
+          <span class="nav-icon"></span>Meu perfil
+        </button>
+
+        <button class="nav-item" data-page="ranking" type="button">
+          <span class="nav-icon"></span>Ranking
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="club-promo">
+          <div class="promo-kicker">IYFY MINDSET</div>
+          <div class="promo-title">Your journey.<br>Your evolution.</div>
+          <div class="promo-line"></div>
+          <span>IT'S YOU FOR YOU</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+      <header class="topbar">
+        <button
+          class="mobile-menu"
+          id="mobileMenu"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="sidebar"
+        >☰</button>
+
+        <div class="breadcrumb">
+          <span>MEMBRO</span>
+          <b>/</b>
+          <strong id="breadcrumbTitle">VISÃO GERAL</strong>
+        </div>
+
+        <div class="top-actions">
+          <button class="icon-button" type="button" aria-label="Notificações">
+            <i></i>
+          </button>
+
+          <div class="member-account">
+            <div class="top-avatar" id="memberAvatar">IY</div>
+            <div class="member-info">
+              <strong id="memberName">Membro</strong>
+              <small>MEMBRO IYFY</small>
+            </div>
+          </div>
+
+          <button class="logout-button" id="logoutButton" type="button">
+            SAIR
+          </button>
+        </div>
+      </header>
+
+      <!-- VISÃO GERAL -->
+      <section class="page active" id="page-home">
+
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow">
+              <span class=""></span>BEM-VINDO(A)
+            </div>
+
+            <h1>Olá, Runners<span class="orange"></span></h1>
+            <p class="muted">Sua jornada continua. Veja o que está acontecendo no clube.</p>
+          </div>
+
+          <button class="primary-button" data-go="community" type="button">
+            ＋ Ver comunidade
+          </button>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-copy">
+            <div class="hero-tag">IYFY RUNNING CLUB <span></span>ÁREA DO MEMBRO</div>
+
+            <h2>Não corra<br>sozinho<span class="orange"></span></h2>
+
+            <p>Faça parte de uma comunidade que acredita na evolução diária. O próximo passo é seu.</p>
+
+            <button class="light-button" data-go="challenges" type="button">
+              Explorar desafios <span></span>
+            </button>
+          </div>
+
+          <div class="hero-art">
+            <img src="run.jpeg" alt="Atleta correndo" class="hero-image">
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">ACONTECE NO CLUBE</div>
+            <h2>Em destaque</h2>
+          </div>
+
+          <button class="text-button" data-go="community" type="button">
+            Ver clube no Strava
+          </button>
+        </div>
+
+        <div class="content-grid">
+          <div class="feed-column">
+
+            <article class="post-card">
+              <div class="post-head">
+                <div class="avatar avatar-orange">IR</div>
+
+                <div class="post-author">
+                  <strong>IYFY Running</strong>
+                  <small>Equipe oficial · há 2 horas</small>
+                </div>
+
+                <span class="verified">✓</span>
+                <button class="more" type="button" aria-label="Mais opções">···</button>
+              </div>
+
+              <p class="post-text">
+                Uma nova semana, uma nova oportunidade de evoluir.
+                O importante não é correr mais rápido que alguém, mas continuar
+                avançando na sua própria jornada. <b>#ItsYouForYou</b>
+              </p>
+
+              <div class="post-visual">
+                <img
+                  src="runningtwomen.webp"
+                  alt="Atletas do IYFY Running Club em um treino"
+                  class="post-image"
+                >
+              </div>
+
+              
+            </article>
+
+          </div>
+
+          <aside class="right-column">
+
+            <div class="side-card challenge-widget">
+              <div class="widget-head">
+                <span>DESAFIO EM BREVE</span>
+                <span class="tiny-arrow"></span>
+              </div>
+
+              <div class="challenge-icon"></div>
+              <h3>THE LAST 100K<br>DE DEZEMBRO</h3>
+
+              <p>Some 100 quilômetros durante o mês e complete o desafio coletivo.</p>
+
+              
+
+              <button class="outline-button" data-go="challenges" type="button">
+                Saiba mais
+              </button>
+            </div>
+
+            <div class="side-card">
+              <div class="widget-head">
+                <span>PRÓXIMO TREINO</span>
+                <span class="tiny-arrow"></span>
+              </div>
+
+              <div class="event-date">
+                <b>6</b>
+                <span>DEZ<br>2026</span>
+              </div>
+
+              <h3>Longão 21K IYFY</h3>
+              <p>Encontro, movimento e conexão, depois um café.</p>
+
+              <button class="text-button" data-go="community" type="button">
+                <a href="">Ver detalhes</a>
+              </button>
+            </div>
+
+            <div class="quote-card">
+              <span>“</span>
+              <p>O progresso acontece quando você decide não desistir de si.</p>
+              <small>IYFY MINDSET / 001</small>
+            </div>
+
+          </aside>
+        </div>
+      </section>
+
+      <!-- COMUNIDADE -->
+      <section class="page" id="page-community">
+
+        <div class="page-title-row">
+          <div>
+            <div class="eyebrow">CONECTE-SE</div>
+            <h1>Comunidade<span class="orange"></span></h1>
+            <p class="muted">Conquistas compartilhadas inspiram novas jornadas.</p>
+          </div>
+
+          <button class="primary-button" id="newPost" type="button">
+            ＋ Nova publicação
+          </button>
+        </div>
+
+        <div class="community-layout">
+
+          <div class="feed-column" id="communityFeed">
+
+            <div class="composer">
+              <div class="avatar">LG</div>
+              <button id="composerButton" type="button">
+                Compartilhe uma conquista com a comunidade...
+              </button>
+              <span>＋</span>
+            </div>
+
+            <article class="post-card">
+              <div class="post-head">
+                <div class="avatar avatar-orange">IM</div>
+
+                <div class="post-author">
+                  <strong>IYFY Running</strong>
+                  <small>Equipe oficial · há 2 horas</small>
+                </div>
+
+                <span class="verified">✓</span>
+                <button class="more" type="button" aria-label="Mais opções">···</button>
+              </div>
+
+              <p class="post-text">
+                Uma nova semana, uma nova oportunidade de evoluir.
+                O importante não é correr mais rápido que alguém, mas continuar
+                avançando na sua própria jornada. <b>#ItsYouForYou</b>
+              </p>
+
+              <div class="post-visual">
+                <div class="visual-copy">
+                  <span>THE ONLY<br>COMPETITION</span>
+                  <strong>IS YOU<span>.</span></strong>
+                  <small>IYFY RUNNING — KEEP MOVING</small>
+                </div>
+                <div class="visual-orbit"></div>
+              </div>
+
+              <div class="post-actions">
+                <button class="like-button" type="button">♡ <span>24</span></button>
+                <button type="button">▢ <span>8 comentários</span></button>
+                <button class="share-button" type="button">↗ <span>Compartilhar</span></button>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <div class="post-head">
+                <div class="avatar avatar-blue">AM</div>
+
+                <div class="post-author">
+                  <strong>Ana Martins</strong>
+                  <small>Membro #000094 · ontem</small>
+                </div>
+
+                <button class="more" type="button" aria-label="Mais opções">···</button>
+              </div>
+
+              <p class="post-text">
+                Primeiros 10 km sem parar! Um passo de cada vez.
+                Obrigada por fazerem parte dessa jornada. 🏃‍♀️
+              </p>
+
+              <div class="post-photo-placeholder">
+                <span>10.00 <small>KM</small></span>
+                <small>CONQUISTA PESSOAL · 06:42 AM</small>
+              </div>
+
+              <div class="post-actions">
+                <button class="like-button" type="button">♡ <span>18</span></button>
+                <button type="button">▢ <span>3 comentários</span></button>
+                <button class="share-button" type="button">↗ <span>Compartilhar</span></button>
+              </div>
+            </article>
+
+          </div>
+
+          
+        </div>
+      </section>
+
+      <!-- DESAFIOS -->
+      <section class="page" id="page-challenges">
+
+        <div class="page-title-row">
+          <div>
+            <div class="eyebrow">SUPERE SEUS LIMITES</div>
+            <h1>Desafios<span class="orange"></span></h1>
+            <p class="muted">Pequenas metas. Grandes evoluções.</p>
+          </div>
+
+          <div class="filter-chip">DEZEMBRO 2026　⌄</div>
+        </div>
+
+        <div class="challenge-feature">
+          <div>
+            <span class="eyebrow">DESAFIO EM DESTAQUE · 1 A 31 DEZ</span>
+
+            <h2>THE LAST<br>100K<span class="orange"></span></h2>
+
+            <p class="challenge-description">
+              O objetivo é somar 100 quilômetros ao longo de 31 dias.
+              Um desafio coletivo para incentivar a consistência, superar
+              limites e mostrar que cada quilômetro conta — no seu ritmo,
+              dentro da sua jornada.
+            </p>
+
+            <a
+              class="primary-button challenge-join-button"
+              href="https://wa.me/5591989058986?text=Ol%C3%A1%21%20Quero%20participar%20do%20desafio%20THE%20LAST%20100K%20do%20IYFY%20CLUB.%20Como%20fa%C3%A7o%20para%20me%20inscrever%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              QUERO PARTICIPAR <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="challenge-number">
+            100<span>K</span>
+            <small>YOUR PACE.<br>YOUR JOURNEY.</small>
+          </div>
+        </div>
+
+        <!-- PROGRESSO INDIVIDUAL DO ATLETA -->
+        <section id="myChallengesSection" hidden>
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">SUA JORNADA</div>
+              <h2>Meu progresso</h2>
+            </div>
+          </div>
+
+          <div id="myChallengesList"></div>
+        </section>
+
+        <!-- PAINEL ADMINISTRATIVO -->
+        <section id="challengeAdminPanel" hidden>
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">GESTÃO IYFY CLUB</div>
+              <h2>Administração dos desafios</h2>
+              <p class="muted">Gerencie inscrições e quilômetros dos atletas.</p>
+            </div>
+          </div>
+
+          <div class="challenge-card">
+
+            <h3>Autorizar atleta</h3>
+
+            <label for="adminAthleteSelect">Selecionar atleta</label>
+            <select id="adminAthleteSelect">
+              <option value="">Carregando atletas...</option>
+            </select>
+
+            <button
+              class="primary-button"
+              type="button"
+              id="authorizeChallengeButton"
+            >
+              LIBERAR THE LAST 100K
+            </button>
+
+            <hr>
+
+            <h3>Registrar quilômetros</h3>
+
+            <label for="adminParticipantSelect">Atleta participante</label>
+            <select id="adminParticipantSelect">
+              <option value="">Selecione um participante</option>
+            </select>
+
+            <label for="adminKmInput">Quilômetros realizados</label>
+            <input
+              id="adminKmInput"
+              type="number"
+              min="0.01"
+              step="0.01"
+              placeholder="Ex.: 5.00"
+            >
+
+            <label for="adminSourceSelect">Origem da comprovação</label>
+            <select id="adminSourceSelect">
+              <option value="Strava">Strava</option>
+              <option value="Garmin">Garmin</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Outro">Outro</option>
+            </select>
+
+            <label for="adminKmNote">Observação (opcional)</label>
+            <textarea
+              id="adminKmNote"
+              rows="3"
+              placeholder="Ex.: Corrida de 5 km validada pela equipe."
+            ></textarea>
+
+            <button
+              class="primary-button"
+              type="button"
+              id="registerKmButton"
+            >
+              REGISTRAR QUILÔMETROS
+            </button>
+
+            <p id="challengeAdminMessage" class="muted"></p>
+
+          </div>
+        </section>
+
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">PARTICIPE</div>
+            <h2>Desafios de janeiro em breve</h2>
+          </div>
+        </div>
+
+        <div class="challenge-grid">
+
+          <article class="challenge-card">
+            <div class="challenge-card-top">
+              <span class="tag-upcoming">INICIANTE</span>
+              <span class="tag-upcoming">EM BREVE</span>
+            </div>
+
+            <h3>Primeiros<br>5 quilômetros</h3>
+            <p>Um desafio para quem está começando.</p>
+
+            <div class="challenge-meta">
+              <span>Janeiro</span>
+              <span>5 KM</span>
+            </div>
+
+            <div class="progress">
+              <i style="width: 0%"></i>
+            </div>
+
+            <button class="outline-button" type="button" disabled>
+              Em breve
+            </button>
+          </article>
+
+          <article class="challenge-card">
+            <div class="challenge-card-top">
+              <span class="tag-upcoming">INICIANTE</span>
+              <span class="tag-upcoming">EM BREVE</span>
+            </div>
+
+            <h3>Primeiros<br>5 quilômetros</h3>
+            <p>Um desafio para quem está começando.</p>
+
+            <div class="challenge-meta">
+              <span>Janeiro</span>
+              <span>5 KM</span>
+            </div>
+
+            <div class="progress">
+              <i style="width: 0%"></i>
+            </div>
+
+            <button class="outline-button" type="button" disabled>
+              Em breve
+            </button>
+          </article>
+
+          <article class="challenge-card">
+            <div class="challenge-card-top">
+              <span class="tag-upcoming">INICIANTE</span>
+              <span class="tag-upcoming">EM BREVE</span>
+            </div>
+
+            <h3>Primeiros<br>5 quilômetros</h3>
+            <p>Um desafio para quem está começando.</p>
+
+            <div class="challenge-meta">
+              <span>Janeiro</span>
+              <span>5 KM</span>
+            </div>
+
+            <div class="progress">
+              <i style="width: 0%"></i>
+            </div>
+
+            <button class="outline-button" type="button" disabled>
+              Em breve
+            </button>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- TREINAMENTO -->
+      <section class="page" id="page-training">
+
+        <div class="page-title-row">
+          <div>
+            <div class="eyebrow">CONHECIMENTO EM MOVIMENTO</div>
+            <h1>Treinamento<span class="orange"></span></h1>
+            <p class="muted">Conteúdo e orientação para sua próxima evolução.</p>
+          </div>
+        </div>
+
+        <div class="training-banner">
+          <div>
+            <span class="eyebrow">IYFY TRAINING</span>
+            <h2>Treine com<br>intenção<span class="orange"></span></h2>
+            <p>
+              Conhecimento aplicado à corrida, respeitando sua jornada
+              e seu momento.
+            </p>
+          </div>
+
+          <div class="training-symbol">
+            IYFY<br><span>EDUCATION</span>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">BIBLIOTECA DO MEMBRO</div>
+            <h2>Planilhas de treinamento</h2>
+          </div>
+        </div>
+
+        <div class="training-grid">
+
+          <article class="training-card">
+            <span class="training-level">NÍVEL 01</span>
+            <div class="training-distance">5<span>K</span></div>
+            <h3>Comece a correr</h3>
+            <p>Uma introdução progressiva para construir sua base.</p>
+            <button class="outline-button" type="button">Acessar planilha</button>
+          </article>
+
+          <article class="training-card">
+            <span class="training-level">NÍVEL 02</span>
+            <div class="training-distance">10<span>K</span></div>
+            <h3>Ganhe consistência</h3>
+            <p>Desenvolva resistência e evolua seu ritmo.</p>
+            <button class="outline-button" type="button">Acessar planilha</button>
+          </article>
+
+          <article class="training-card locked">
+            <span class="training-level">NÍVEL 03 · EM BREVE</span>
+            <div class="training-distance">21<span>K</span></div>
+            <h3>Vá mais longe</h3>
+            <p>Preparação para novos desafios de distância.</p>
+            <button class="outline-button" type="button" disabled>Em breve</button>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- CARTEIRINHA -->
+      <section class="page" id="page-card">
+
+        <div class="page-title-row">
+          <div>
+            <div class="eyebrow">SUA CARTEIRA NO CLUBE</div>
+            <h1>Carteirinha<span class="orange"></span></h1>
+            <p class="muted">Uma identificação. Uma comunidade. Uma jornada.</p>
+          </div>
+
+          <button class="primary-button" id="downloadCard" type="button">
+            Baixar carteira
+          </button>
+        </div>
+
+        <div class="member-card-wrap">
+
+          <div class="member-card" id="memberCard">
+
+            <div class="member-card-top">
+              <div class="member-logo">
+                IYFY RUNNING<span>CLUB</span>
+              </div>
+              <span class="member-official">MEMBRO OFICIAL</span>
+            </div>
+
+            <div class="member-card-middle">
+              <span class="member-label">ATLETA</span>
+              <h2 id="cardMemberName">CARREGANDO...</h2>
+
+              <div class="member-data">
+                <div>
+                  <span>ID</span>
+                  <b id="cardMemberNumber">---</b>
+                </div>
+
+                <div>
+                  <span>STATUS</span>
+                  <b id="cardMemberStatus">---</b>
+                </div>
+
+                <div>
+                  <span>INGRESSOU</span>
+                  <b id="cardMemberDate">---</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="member-card-bottom">
+              <span>IT'S YOU FOR YOU.</span>
+              <div class="card-watermark">IYFY RUNNING</div>
+              <div class="card-chip"></div>
+            </div>
+
+          </div>
+
+          <div class="card-caption">
+            IYFY CLUB · CARTEIRA DIGITAL DE MEMBRO · 2026
+          </div>
+        </div>
+
+        <div class="member-details">
+          <div>
+            <span>SEU NÚMERO DE MEMBRO</span>
+            <b id="detailMemberNumber">---</b>
+          </div>
+
+          <div>
+            <span>STATUS DA ASSOCIAÇÃO</span>
+            <b class="green-text" id="detailMemberStatus">● ---</b>
+          </div>
+
+          <div>
+            <span>DATA DE ENTRADA</span>
+            <b id="detailMemberDate">---</b>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MEU PERFIL -->
+      <section class="page" id="page-profile">
+
+        <div class="page-title-row">
+          <div>
+            <div class="eyebrow">SUA IDENTIDADE NO CLUBE</div>
+            <h1>Meu perfil<span class="orange"></span></h1>
+            <p class="muted">Suas informações e sua jornada no IYFY CLUB.</p>
+          </div>
+        </div>
+
+        <!-- CARTÃO COM DADOS DO MEMBRO -->
+        <div class="side-card">
+          <div class="member-account">
+            <div class="top-avatar" id="profileAvatar">IY</div>
+            <div class="member-info">
+              <h2 id="profileName">Membro</h2>
+              <small>MEMBRO IYFY CLUB</small>
+            </div>
+          </div>
+
+          <div class="member-details">
+            <div>
+              <span>NOME COMPLETO</span>
+              <b id="profileFullName">Carregando...</b>
+            </div>
+
+            <div>
+              <span>E-MAIL CADASTRADO</span>
+              <b id="profileEmail">Carregando...</b>
+            </div>
+
+            <div>
+              <span>DATA DE CADASTRO</span>
+              <b id="profileCreatedAt">Carregando...</b>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTÃO PARA EDITAR OS DADOS -->
+        <div class="side-card" style="margin-top: 20px;">
+          <h2>Editar meus dados</h2>
+          <p class="muted">Mantenha suas informações atualizadas.</p>
+
+          <form id="profileForm">
+
+            <div class="form-group">
+              <label for="editFullName">Nome completo</label>
+              <input
+                type="text"
+                id="editFullName"
+                placeholder="Digite seu nome completo"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="editUsername">Nome de usuário</label>
+              <input
+                type="text"
+                id="editUsername"
+                placeholder="Escolha seu nome de usuário"
+              >
+            </div>
+
+            <button type="submit" class="primary-button">
+              SALVAR ALTERAÇÕES
+            </button>
+
+            <p id="profileMessage" role="status"></p>
+
+          </form>
+        </div>
+
+        <!-- PROGRESSO DO DESAFIO NO PERFIL -->
+        <div class="profile-challenge-section" id="profileChallengeSection" hidden>
+
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">SUA JORNADA</div>
+              <h2>Meu desafio</h2>
+              <p class="muted">Acompanhe sua evolução no THE LAST 100K.</p>
+            </div>
+          </div>
+
+          <div id="profileChallengeProgress"></div>
+
+        </div>
+
+      </section>
+
+      <!-- RANKING -->
+      <section class="page" id="page-ranking">
+
+        <div class="page-title-row">
+          <div>
+            <div class="eyebrow">EVOLUÇÃO COMPARTILHADA</div>
+            <h1>Ranking<span class="orange"></span></h1>
+            <p class="muted">Celebre a consistência. Inspire a comunidade.</p>
+          </div>
+
+          <div class="filter-chip">NOVEMBRO 2026　⌄</div>
+        </div>
+
+        <div class="ranking-highlight">
+          <div>
+            <span class="eyebrow">RANKING DO MÊS</span>
+            <h2>Quem está<br>em movimento<span class="orange"></span></h2>
+            <p>
+              Classificação baseada nos quilômetros
+              registrados no desafio de novembro.
+            </p>
+          </div>
+
+          <div class="ranking-trophy">
+            ♜
+            <small>TOP<br>MEMBROS</small>
+          </div>
+        </div>
+
+        <div class="ranking-table">
+
+          <div class="ranking-row ranking-header">
+            <span>POSIÇÃO</span>
+            <span>MEMBRO</span>
+            <span>KM NO MÊS</span>
+            <span>STATUS</span>
+          </div>
+
+          <div class="ranking-row">
+            <b class="rank-number first">1</b>
+
+            <div class="rank-person">
+              <div class="avatar avatar-orange">LG</div>
+              <div>
+                <b>Lucas Gusmão</b>
+                <small>#0001</small>
+              </div>
+            </div>
+
+            <b>0 km</b>
+            <span class="rank-badge">MEMBRO</span>
+          </div>
+
+          <div class="ranking-row">
+            <b class="rank-number">2</b>
+
+            <div class="rank-person">
+              <div class="avatar avatar-blue">AT</div>
+              <div>
+                <b>Atleta</b>
+                <small>#0000</small>
+              </div>
+            </div>
+
+            <b>0 km</b>
+            <span class="muted">Membro</span>
+          </div>
+
+          <div class="ranking-row">
+            <b class="rank-number">3</b>
+
+            <div class="rank-person">
+              <div class="avatar avatar-blue">AT</div>
+              <div>
+                <b>Atleta</b>
+                <small>#0000</small>
+              </div>
+            </div>
+
+            <b>0 km</b>
+            <span class="muted">Membro</span>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          Os dados de ranking são dos dados do Strava do Clube da IYFY.
+        </div>
+
+      </section>
+
+      <footer class="footer">
+        <span>© 2026 IYFY RUNNING</span>
+        <span>YOUR JOURNEY. YOUR EVOLUTION.<b></b></span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- MODAL DE PUBLICAÇÃO -->
+  <div class="modal-backdrop" id="postModal">
+    <div class="modal">
+
+      <button
+        class="modal-close"
+        id="closeModal"
+        type="button"
+        aria-label="Fechar janela"
+      >×</button>
+
+      <div class="eyebrow">COMUNIDADE IYFY</div>
+
+      <h2>Compartilhe sua jornada<span class="orange">.</span></h2>
+
+      <p class="muted">Uma conquista sua pode inspirar alguém.</p>
+
+      <textarea
+        id="postText"
+        placeholder="O que você gostaria de compartilhar?"
+        aria-label="Texto da publicação"
+      ></textarea>
+
+      <div class="modal-actions">
+        <span>Seja respeitoso. Inspire. Conecte.</span>
+        <button class="primary-button" id="publishPost" type="button">
+          Publicar ↗
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    Copiado para a área de transferência!
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

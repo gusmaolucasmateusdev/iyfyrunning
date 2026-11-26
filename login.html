@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IYFY CLUB | Acesso dos membros</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #090b09;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      background: #141714;
+      border: 1px solid #292f29;
+      border-radius: 18px;
+      padding: 42px 36px;
+      box-shadow: 0 20px 60px #0008;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .brand h1 {
+      font-size: 30px;
+      letter-spacing: 3px;
+      font-weight: 900;
+    }
+
+    .brand h1 span {
+      color: white;
+    }
+
+    .brand p {
+      color: #929a90;
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-top: 9px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 9px;
+    }
+
+    .subtitle {
+      color: #929a90;
+      font-size: 14px;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 9px;
+      color: #d8ded5;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #343b34;
+      background: #0c0f0c;
+      color: white;
+      border-radius: 9px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: black;
+    }
+
+    .main-button {
+      width: 100%;
+      padding: 16px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 9px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .main-button:hover {
+      background: white;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #929a90;
+      line-height: 2.2;
+    }
+
+    .links button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      font-size: 13px;
+      margin-top: 18px;
+      line-height: 1.5;
+      color: white;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 32px 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="login-container">
+
+    <header class="brand">
+      <h1>IYFY <span>CLUB</span></h1>
+      <p>SEU PRÓXIMO NÍVEL COMEÇA AQUI</p>
+    </header>
+
+    <!-- LOGIN -->
+    <section id="loginSection">
+      <h2>Bem-vindo de volta!</h2>
+      <p class="subtitle">
+        Entre na sua conta para acessar a comunidade.
+      </p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">E-mail</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Senha</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Sua senha"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button class="main-button" type="submit">
+          ENTRAR
+        </button>
+      </form>
+
+      <div class="links">
+        <button type="button" id="forgotPassword">
+          Esqueci minha senha
+        </button>
+        <p>
+          Ainda não tem conta?
+          <button type="button" id="showSignup">Criar conta</button>
+        </p>
+      </div>
+    </section>
+
+    <!-- CADASTRO -->
+    <section id="signupSection" class="hidden">
+      <h2>Faça parte do clube!</h2>
+      <p class="subtitle">
+        Crie sua conta e venha evoluir com a nossa comunidade.
+      </p>
+
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="signupName">Nome completo</label>
+          <input
+            type="text"
+            id="signupName"
+            placeholder="Seu nome completo"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail">E-mail</label>
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword">Senha</label>
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Mínimo de 6 caracteres"
+            minlength="6"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="signupConfirmPassword">Confirmar senha</label>
+          <input
+            type="password"
+            id="signupConfirmPassword"
+            placeholder="Digite a senha novamente"
+            minlength="6"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <button class="main-button" type="submit">
+          CRIAR MINHA CONTA
+        </button>
+      </form>
+
+      <div class="links">
+        Já possui uma conta?
+        <button type="button" id="showLogin">Fazer login</button>
+      </div>
+    </section>
+
+    <p id="authMessage" class="message" role="status" aria-live="polite"></p>
+
+  </main>
+
+  <script type="module" src="auth.js"></script>
+
+</body>
+</html>
