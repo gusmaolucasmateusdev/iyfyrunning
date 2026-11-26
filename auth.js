@@ -1,6 +1,9 @@
 
 import { supabase } from './supabase.js';
 
+// Endereço oficial do IYFY CLUB
+const SITE_URL = 'https://iyfyrunning.com.br';
+
 // Elementos da tela
 const loginSection = document.getElementById('loginSection');
 const signupSection = document.getElementById('signupSection');
@@ -73,11 +76,11 @@ document.getElementById('signupForm').addEventListener('submit', async (event) =
     email,
     password,
     options: {
-  emailRedirectTo: `${window.location.origin}/login.html`,
-  data: {
-    full_name: name
-  }
-}
+      emailRedirectTo: `${SITE_URL}/login.html`,
+      data: {
+        full_name: name
+      }
+    }
   });
 
   button.disabled = false;
@@ -121,7 +124,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
   }
 
   if (data.session) {
-    showMessage('Login realizado! Bem-vindo a IYFY CLUB.');
+    showMessage('Login realizado! Bem-vindo ao IYFY CLUB.');
     window.location.replace('iyfyclub.html');
   }
 });
@@ -137,7 +140,7 @@ document.getElementById('forgotPassword').addEventListener('click', async () => 
   }
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${window.location.origin}/login.html`
+    redirectTo: `${SITE_URL}/login.html`
   });
 
   if (error) {
