@@ -35,7 +35,7 @@ async function checkSession() {
   }
 
   if (data.session) {
-    window.location.replace('index.html');
+    window.location.replace('iyfyclub.html');
   }
 }
 
@@ -90,7 +90,7 @@ document.getElementById('signupForm').addEventListener('submit', async (event) =
 
   if (data.session) {
     showMessage('Conta criada! Entrando no clube...');
-    window.location.replace('index.html');
+    window.location.replace('iyfyclub.html');
   } else {
     showMessage('Cadastro realizado! Confira seu e-mail para confirmar sua conta.');
   }
@@ -122,7 +122,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
   if (data.session) {
     showMessage('Login realizado! Bem-vindo a IYFY CLUB.');
-    window.location.replace('index.html');
+    window.location.replace('iyfyclub.html');
   }
 });
 
